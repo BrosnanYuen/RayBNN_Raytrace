@@ -36,16 +36,12 @@ pub fn line_sphere_intersect<Z: arrayfire::RealFloating<AggregateOutType = Z>  >
 
 	let space_dims = start_line.dims()[1];
 
+	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
 
-	let t_dims = arrayfire::Dim4::new(&[1,1,1,1]);
-	let temp_constant = vec![TWO_F64 ];
-	let mut TWO = arrayfire::Array::new(&temp_constant, t_dims).cast::<Z>();
+	let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
 
-	let temp_constant = vec![ONE_F64 ];
-	let mut ONE = arrayfire::Array::new(&temp_constant, t_dims).cast::<Z>();
-
-	let temp_constant = vec![ZERO_F64 ];
-	let mut ZERO = arrayfire::Array::new(&temp_constant, t_dims).cast::<Z>();
+	let ONE = arrayfire::constant::<f64>(ONE_F64,single_dims).cast::<Z>();
 
 
 
