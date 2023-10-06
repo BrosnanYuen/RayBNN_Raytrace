@@ -21,6 +21,8 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
+RayBNN_DataLoader = "0.1.3"
+RayBNN_Sparse = "0.1.2"
 
 
 [dev-dependencies]
@@ -31,6 +33,8 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
+RayBNN_DataLoader = "0.1.3"
+RayBNN_Sparse = "0.1.2"
 
 
 [build-dependencies]
@@ -41,7 +45,8 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-
+RayBNN_DataLoader = "0.1.3"
+RayBNN_Sparse = "0.1.2"
 
 
 [lib]
