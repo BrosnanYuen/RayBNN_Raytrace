@@ -1,0 +1,53 @@
+[package]
+name = "RayBNN_Raytrace"
+version = "0.1.0"
+authors = ["Brosnan Yuen <brosnanyuen@gmail.com>"]
+edition = "2021"
+description = "Ray tracing library using GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI"
+readme = "README.md"
+repository = "https://github.com/BrosnanYuen/RayBNN_Raytrace"
+keywords = ["raytracer","raytracing","ray-tracing","CUDA","OpenCL"]
+license = "GPL-3.0-only"
+categories = ["science"]
+
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
+rayon = "1.7.0"
+num = "0.4.1"
+num-traits = "0.2.16"
+half = { version = "2.3.1" , features = ["num-traits"] }
+rand = "0.8.5"
+nohash-hasher = "0.2.0"
+
+
+[dev-dependencies]
+arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
+rayon = "1.7.0"
+num = "0.4.1"
+num-traits = "0.2.16"
+half = { version = "2.3.1" , features = ["num-traits"] }
+rand = "0.8.5"
+nohash-hasher = "0.2.0"
+
+
+[build-dependencies]
+arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
+rayon = "1.7.0"
+num = "0.4.1"
+num-traits = "0.2.16"
+half = { version = "2.3.1" , features = ["num-traits"] }
+rand = "0.8.5"
+nohash-hasher = "0.2.0"
+
+
+
+[lib]
+name = "RayBNN_Raytrace"
+path = "src/lib.rs"
+
+
+
+

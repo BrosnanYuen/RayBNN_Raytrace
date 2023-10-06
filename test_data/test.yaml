@@ -1,0 +1,7 @@
+# Model Version
+version: 1.5
+active_size: 1552
+add_ratio:    4.7
+model_filename:   '/opt/test/'  
+input_size: 15
+data_filename:   '/tmp/test/'  
