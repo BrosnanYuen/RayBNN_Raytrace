@@ -110,3 +110,94 @@ pub fn line_sphere_intersect<Z: arrayfire::RealFloating<AggregateOutType = Z>  >
 
 
 
+
+pub fn line_sphere_intersect_batch(
+	batch_size: u64,
+	start_line: &arrayfire::Array<f64>,
+	dir_line: &arrayfire::Array<f64>,
+
+	circle_center: &arrayfire::Array<f64>,
+	circle_radius: &arrayfire::Array<f64>,
+
+	intersect: &mut arrayfire::Array<bool>
+    )
+{
+
+    let mut i: u64 = 0;
+    let mut startseq: u64 = 0;
+    let mut endseq: u64 = 0;
+    let total_size = circle_radius.dims()[0];
+
+
+
+
+
+    startseq = i;
+    endseq = i + batch_size-1;
+    if (endseq >= (total_size-1))
+    {
+        endseq = total_size-1;
+    }
+
+    let seqs = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64)];
+    let input_circle_radius  = arrayfire::index(circle_radius, seqs);
+
+    let seqs2 = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64), arrayfire::Seq::default()];
+    let input_circle_center  = arrayfire::index(circle_center, seqs2);
+
+
+	line_sphere_intersect(
+		start_line,
+		dir_line,
+	
+		&input_circle_center,
+		&input_circle_radius,
+	
+		intersect
+		);
+
+
+    i = i + batch_size;
+
+
+	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let mut intersect_temp = arrayfire::constant::<bool>(false,single_dims);
+
+
+    while i < total_size
+    {
+        startseq = i;
+        endseq = i + batch_size-1;
+        if (endseq >= (total_size-1))
+        {
+            endseq = total_size-1;
+        }
+
+		let seqs = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64)];
+		let input_circle_radius  = arrayfire::index(circle_radius, seqs);
+	
+		let seqs2 = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64), arrayfire::Seq::default()];
+		let input_circle_center  = arrayfire::index(circle_center, seqs2);
+	
+		line_sphere_intersect(
+			start_line,
+			dir_line,
+		
+			&input_circle_center,
+			&input_circle_radius,
+		
+			&mut intersect_temp
+			);
+        
+
+		*intersect = arrayfire::join(2, intersect, &intersect_temp);
+
+        i = i + batch_size;
+    }
+
+
+}
+
+
+
+
