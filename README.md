@@ -29,3 +29,18 @@ RayBNN_Sparse = "0.1.2"
 
 # List of Examples
 
+
+# Line Sphere Intersection
+```
+RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect(
+    &start_line,
+    &dir_line,
+
+    &circle_center,
+    &circle_radius,
+
+    &mut intersect
+);
+```
+
+
