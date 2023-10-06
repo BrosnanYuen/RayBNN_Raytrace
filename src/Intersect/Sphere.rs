@@ -111,7 +111,7 @@ pub fn line_sphere_intersect<Z: arrayfire::RealFloating<AggregateOutType = Z>  >
 
 
 
-pub fn line_sphere_intersect_batch<Z: arrayfire::RealFloating  >(
+pub fn line_sphere_intersect_batch<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	batch_size: u64,
 	start_line: &arrayfire::Array<Z>,
 	dir_line: &arrayfire::Array<Z>,
