@@ -67,7 +67,7 @@ pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 
 	let con_rad_sq = con_rad*con_rad;
 
-	let mut mag2 = arrayfire::pow(&input_diff,&two,false);
+	let mut mag2 = arrayfire::pow(&input_diff,&TWO,false);
 	mag2 = arrayfire::sum(&mag2, 1);
 
 	//  (con_rad_sq >= mag2 )
