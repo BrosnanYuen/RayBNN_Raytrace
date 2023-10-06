@@ -256,7 +256,7 @@ pub fn line_sphere_intersect_batchV2(
 	);
 
 	let mut counter_temp = intersect.cast::<u8>();
-	//intersect = arrayfire::constant::<bool>(false,single_dims);
+	
 	counter = counter + arrayfire::sum(&counter_temp, 2);
 
 
@@ -298,7 +298,7 @@ pub fn line_sphere_intersect_batchV2(
 		);
         
 		counter_temp = intersect.cast::<u8>();
-		//intersect = arrayfire::constant::<bool>(false,single_dims);
+		
 		counter = counter + arrayfire::sum(&counter_temp, 2);
 	
 
@@ -326,7 +326,7 @@ pub fn line_sphere_intersect_batchV2(
 
 		}
 
-		// *intersect = arrayfire::join(2, intersect, &intersect_temp);
+		
 
         i = i + batch_size;
     }
@@ -336,7 +336,7 @@ pub fn line_sphere_intersect_batchV2(
 	//Lookup  1 >= dir_line  >= 0
 	idx_intersect = arrayfire::locate(&CMPRET);
 
-	//counter = arrayfire::lookup(&counter, &idx_intersect, 0);
+	
 	*start_line = arrayfire::lookup(start_line, &idx_intersect, 0);
 	*dir_line = arrayfire::lookup(dir_line, &idx_intersect, 0);
 	*input_idx = arrayfire::lookup(input_idx, &idx_intersect, 0);
