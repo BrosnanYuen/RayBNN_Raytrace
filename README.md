@@ -44,4 +44,19 @@ RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect(
 );
 ```
 
+# Line Sphere Intersection Batch
+```
+RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batch(
+    3,
+    &start_line,
+    &dir_line,
+
+    &circle_center,
+    &circle_radius,
+
+    &mut intersect
+);
+```
+
+
 
