@@ -3,7 +3,7 @@
 Ray tracing library using GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI 
 
 
-Raytraces intersections between rays and circles
+Raytraces intersections between rays, spheres, circles
 
 
 # Install Arrayfire
