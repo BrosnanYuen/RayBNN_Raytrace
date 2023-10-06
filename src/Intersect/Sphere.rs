@@ -9,13 +9,13 @@ use std::collections::HashMap;
 
 
 
-const TWO: f64 = 2.0;
-const ONE: f64 = 1.0;
-const ZERO: f64 = 0.0;
+const TWO_f64: f64 = 2.0;
+const ONE_f64: f64 = 1.0;
+const ZERO_f64: f64 = 0.0;
 
-const EPSILON: f64 = 1.0e-3;
+const EPSILON_f64: f64 = 1.0e-3;
 
-const ONEMINUSEPSILON: f64 = ONE - EPSILON;
+const ONEMINUSEPSILON_f64: f64 = ONE - EPSILON;
 
 
 
@@ -35,6 +35,17 @@ pub fn line_sphere_intersect<Z: arrayfire::RealFloating>(
 	let circle_num: u64 = circle_center.dims()[0];
 
 	let space_dims = start_line.dims()[1];
+
+
+	let t_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let temp_constant = vec![TWO_f64 ];
+	let mut TWO = arrayfire::Array::new(&temp_constant, t_dims).cast::<Z>();
+
+	let temp_constant = vec![ONE_f64 ];
+	let mut ONE = arrayfire::Array::new(&temp_constant, t_dims).cast::<Z>();
+
+	let temp_constant = vec![ZERO_f64 ];
+	let mut ZERO = arrayfire::Array::new(&temp_constant, t_dims).cast::<Z>();
 
 
 
