@@ -10,7 +10,7 @@ const DEVICE: i32 = 0;
 
 use rayon::prelude::*;
 
-
+use half;
 
 #[test]
 fn test_line_sphere_f16() {
