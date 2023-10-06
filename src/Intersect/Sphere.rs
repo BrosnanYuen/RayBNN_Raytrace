@@ -238,12 +238,11 @@ pub fn line_sphere_intersect_batchV2<Z: arrayfire::RealFloating<AggregateOutType
         endseq = total_size-1;
     }
 
-    let seqs = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64)];
-    let input_circle_radius  = arrayfire::index(circle_radius, seqs);
 
-    let seqs2 = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64), arrayfire::Seq::default()];
-    let input_circle_center  = arrayfire::index(circle_center, seqs2);
 
+	let input_circle_radius  = arrayfire::rows(circle_radius, startseq  as i64,endseq as i64);
+
+	let input_circle_center  = arrayfire::rows(circle_center, startseq  as i64,endseq as i64);
 
 	line_sphere_intersect(
 		start_line,
@@ -281,12 +280,13 @@ pub fn line_sphere_intersect_batchV2<Z: arrayfire::RealFloating<AggregateOutType
             endseq = total_size-1;
         }
 
-		let seqs = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64)];
-		let input_circle_radius  = arrayfire::index(circle_radius, seqs);
+
+
+		let input_circle_radius  = arrayfire::rows(circle_radius, startseq  as i64,endseq as i64);
+
+		let input_circle_center  = arrayfire::rows(circle_center, startseq  as i64,endseq as i64);
 	
-		let seqs2 = &[arrayfire::Seq::new(startseq as f64, endseq as f64, 1.0 as f64), arrayfire::Seq::default()];
-		let input_circle_center  = arrayfire::index(circle_center, seqs2);
-	
+
 		line_sphere_intersect(
 			start_line,
 			dir_line,
