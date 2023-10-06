@@ -36,5 +36,9 @@ fn test_generate() {
 
     RayBNN_Raytrace::Generate::Ray::tileDown(repeat_num, &mut input_arr);
 
+    assert_eq!(input_arr.dims()[0], repeat_num*7);
+    assert_eq!(input_arr.dims()[1], 3);
+
+    arrayfire::print_gen("input_arr".to_string(), &input_arr, Some(6));
 
 }
