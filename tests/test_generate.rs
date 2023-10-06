@@ -34,11 +34,18 @@ fn test_generate() {
 
     let repeat_num = 5;
 
+    assert_eq!(input_arr.dims()[0], 7);
+    assert_eq!(input_arr.dims()[1], 3);
+
     RayBNN_Raytrace::Generate::Ray::tileDown(repeat_num, &mut input_arr);
 
     assert_eq!(input_arr.dims()[0], repeat_num*7);
     assert_eq!(input_arr.dims()[1], 3);
 
     arrayfire::print_gen("input_arr".to_string(), &input_arr, Some(6));
+
+    let mut input_arr_repeat = vec!(f32::default();input_arr.elements());
+	input_arr.host(&mut input_arr_repeat);
+
 
 }
