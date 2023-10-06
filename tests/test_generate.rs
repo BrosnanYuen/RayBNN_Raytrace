@@ -103,4 +103,49 @@ fn test_generate() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+    let input_arr_cpu: Vec<i32> = vec![41, 17, -09,
+                                        03, -20, 50,
+                                        -10, 02, -31,
+                                        90, -40, -62,
+                                        03, 99, -51,
+                                        -72, 06, -38,
+                                        34, 20, 27];
+	let mut input_arr = arrayfire::Array::new(&input_arr_cpu, arrayfire::Dim4::new(&[3, 7, 1, 1]));
+
+    input_arr = arrayfire::transpose(&input_arr, false);
+    //arrayfire::print_gen("input_arr"to_string(), &input_arr, Some(6));
+
+    let repeat_num = 5;
+
+    assert_eq!(input_arr.dims()[0], 7);
+    assert_eq!(input_arr.dims()[1], 3);
+
+    RayBNN_Raytrace::Generate::Ray::tileDown(repeat_num, &mut input_arr);
+
+    assert_eq!(input_arr.dims()[0], repeat_num*7);
+    assert_eq!(input_arr.dims()[1], 3);
+
+    //arrayfire::print_gen("input_arr"to_string(), &input_arr, Some(6));
+
+    let mut input_arr_repeat = vec!(i32::default();input_arr.elements());
+	input_arr.host(&mut input_arr_repeat);
+
+
+    let input_arr_act: Vec<i32> = vec![41, 41, 41, 41, 41, 03, 03, 03, 03, 03, -10, -10, -10, -10, -10, 90, 90, 90, 90, 90, 03, 03, 03, 03, 03, -72, -72, -72, -72, -72, 34, 34, 34, 34, 34, 17, 17, 17, 17, 17, -20, -20, -20, -20, -20, 02, 02, 02, 02, 02, -40, -40, -40, -40, -40, 99, 99, 99, 99, 99, 06, 06, 06, 06, 06, 20, 20, 20, 20, 20, -09, -09, -09, -09, -09, 50, 50, 50, 50, 50, -31, -31, -31, -31, -31, -62, -62, -62, -62, -62, -51, -51, -51, -51, -51, -38, -38, -38, -38, -38, 27, 27, 27, 27, 27];
+
+    assert_eq!(input_arr_act, input_arr_repeat);
+
+
+
+
 }
