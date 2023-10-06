@@ -20,12 +20,12 @@ const ONEMINUSEPSILON: f64 = ONE - EPSILON;
 
 
 
-pub fn line_sphere_intersect(
-	start_line: &arrayfire::Array<f64>,
-	dir_line: &arrayfire::Array<f64>,
+pub fn line_sphere_intersect<Z: arrayfire::RealFloating>(
+	start_line: &arrayfire::Array<Z>,
+	dir_line: &arrayfire::Array<Z>,
 
-	circle_center: &arrayfire::Array<f64>,
-	circle_radius: &arrayfire::Array<f64>,
+	circle_center: &arrayfire::Array<Z>,
+	circle_radius: &arrayfire::Array<Z>,
 
 	intersect: &mut arrayfire::Array<bool>
 	)
@@ -45,7 +45,7 @@ pub fn line_sphere_intersect(
 
 	// C - S
 	CENTERSUBSTART = arrayfire::sub(&CENTERSUBSTART,start_line,true);
-	//drop(circle_center_trans);
+
 
 	// dot(C - S, D)
 	let mut dotret = arrayfire::mul(&CENTERSUBSTART,dir_line,true);
