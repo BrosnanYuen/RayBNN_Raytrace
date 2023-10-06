@@ -15,7 +15,7 @@ const ZERO_f64: f64 = 0.0;
 
 const EPSILON_f64: f64 = 1.0e-3;
 
-const ONEMINUSEPSILON_f64: f64 = ONE - EPSILON;
+const ONEMINUSEPSILON_f64: f64 = ONE_f64 - EPSILON_f64;
 
 
 
