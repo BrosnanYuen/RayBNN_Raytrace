@@ -198,16 +198,16 @@ pub fn line_sphere_intersect_batch<Z: arrayfire::RealFloating<AggregateOutType =
 
 
 
-pub fn line_sphere_intersect_batchV2(
+pub fn line_sphere_intersect_batchV2<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	batch_size: u64,
 
 	threshold: u32,
 
-	circle_center: &arrayfire::Array<f64>,
-	circle_radius: &arrayfire::Array<f64>,
+	circle_center: &arrayfire::Array<Z>,
+	circle_radius: &arrayfire::Array<Z>,
 
-	start_line: &mut arrayfire::Array<f64>,
-	dir_line: &mut arrayfire::Array<f64>,
+	start_line: &mut arrayfire::Array<Z>,
+	dir_line: &mut arrayfire::Array<Z>,
 
 	input_idx: &mut arrayfire::Array<i32>,
 	hidden_idx: &mut arrayfire::Array<i32>,
