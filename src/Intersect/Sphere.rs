@@ -20,7 +20,7 @@ const ONEMINUSEPSILON_f64: f64 = ONE_f64 - EPSILON_f64;
 
 
 
-pub fn line_sphere_intersect<Z: arrayfire::RealFloating  + arrayfire::RealFloating<AggregateOutType = Z>>(
+pub fn line_sphere_intersect<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	start_line: &arrayfire::Array<Z>,
 	dir_line: &arrayfire::Array<Z>,
 
