@@ -40,3 +40,53 @@ pub fn tileDown<Z: arrayfire::HasAfEnum >(
 
 
 
+
+
+pub fn filter_rays<Z: arrayfire::RealFloating >(
+	con_rad: f64,
+
+	target_input_pos: &arrayfire::Array<f64>,
+
+	input_pos: &mut arrayfire::Array<f64>,
+	input_idx: &mut arrayfire::Array<i32>,
+	)
+{
+
+	let input_diff = arrayfire::sub(target_input_pos, input_pos, true);
+
+
+
+	let con_rad_sq = con_rad*con_rad;
+
+	let mut mag2 = arrayfire::pow(&input_diff,&two,false);
+	mag2 = arrayfire::sum(&mag2, 1);
+
+	//  (con_rad_sq >= mag2 )
+	let CMPRET = arrayfire::ge(&con_rad_sq, &mag2, false);
+	drop(mag2);
+
+	//Lookup  1 >= dir_line  >= 0
+	let idx_intersect = arrayfire::locate(&CMPRET);
+	drop(CMPRET);
+
+	*input_pos = arrayfire::lookup(input_pos, &idx_intersect, 0);
+
+	*input_idx = arrayfire::lookup(input_idx, &idx_intersect, 0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
