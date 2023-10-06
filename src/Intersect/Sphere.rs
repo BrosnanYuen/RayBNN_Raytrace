@@ -17,7 +17,7 @@ const EPSILON_f64: f64 = 1.0e-3;
 
 const ONEMINUSEPSILON_f64: f64 = ONE_f64 - EPSILON_f64;
 
-
+const COUNT_LIMIT: u64 = 10000000000;
 
 
 pub fn line_sphere_intersect<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
