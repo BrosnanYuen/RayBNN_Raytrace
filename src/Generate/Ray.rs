@@ -45,7 +45,7 @@ pub fn tileDown<Z: arrayfire::HasAfEnum >(
 
 
 
-pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z> + arrayfire::ConstGenerator<OutType = Z> >(
+pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	con_rad: Z,
 
 	target_input_pos: &arrayfire::Array<Z>,
@@ -65,13 +65,9 @@ pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z> + arrayfire:
 
 
 
-	//let con_rad_sq = con_rad*con_rad;
+	let con_rad_sq = con_rad*con_rad;
 
-	let mut con_rad_sq = arrayfire::constant(con_rad,single_dims);
-	con_rad_sq = con_rad_sq.clone()*con_rad_sq.clone();
-
-
-	let mut mag2 = arrayfire::pow(&input_diff,&TWO,false);
+	let mut mag2 = arrayfire::pow(&input_diff,&two,false);
 	mag2 = arrayfire::sum(&mag2, 1);
 
 	//  (con_rad_sq >= mag2 )
@@ -85,6 +81,8 @@ pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z> + arrayfire:
 	*input_pos = arrayfire::lookup(input_pos, &idx_intersect, 0);
 
 	*input_idx = arrayfire::lookup(input_idx, &idx_intersect, 0);
+
+
 }
 
 
