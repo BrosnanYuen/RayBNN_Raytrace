@@ -10,12 +10,12 @@ use std::collections::HashMap;
 
 
 const TWO: f64 = 2.0;
-const one: f64 = 1.0;
-const zero: f64 = 0.0;
+const ONE: f64 = 1.0;
+const ZERO: f64 = 0.0;
 
-const epsilon: f64 = 1.0e-3;
+const EPSILON: f64 = 1.0e-3;
 
-const oneminuseps: f64 = one - epsilon;
+const ONEMINUSEPSILON: f64 = ONE - EPSILON;
 
 
 
@@ -66,7 +66,7 @@ pub fn line_sphere_intersect(
 	drop(sq);
 
 	// Clamp(     dot(C - S, D)  /  |D|^2      )
-	dotret = arrayfire::clamp(&dotret, &zero, &one, false);
+	dotret = arrayfire::clamp(&dotret, &ZERO, &ONE, false);
 
 
 	// Clamp(     dot(C - S, D)  /  |D|^2      )   D
