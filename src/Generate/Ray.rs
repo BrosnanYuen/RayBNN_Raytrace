@@ -7,6 +7,9 @@ use rayon::prelude::*;
 use std::collections::HashMap;
 
 
+const TWO_F64: f64 = 2.0;
+const ONE_F64: f64 = 1.0;
+const ZERO_F64: f64 = 0.0;
 
 
 
@@ -42,15 +45,21 @@ pub fn tileDown<Z: arrayfire::HasAfEnum >(
 
 
 
-pub fn filter_rays<Z: arrayfire::RealFloating >(
-	con_rad: f64,
+pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
+	con_rad: Z,
 
-	target_input_pos: &arrayfire::Array<f64>,
+	target_input_pos: &arrayfire::Array<Z>,
 
-	input_pos: &mut arrayfire::Array<f64>,
+	input_pos: &mut arrayfire::Array<Z>,
 	input_idx: &mut arrayfire::Array<i32>,
 	)
 {
+
+	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
+
+
+
 
 	let input_diff = arrayfire::sub(target_input_pos, input_pos, true);
 
