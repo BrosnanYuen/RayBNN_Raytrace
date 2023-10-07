@@ -95,7 +95,7 @@ pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 
 
 
-pub fn rays_from_neuronsA_to_neuronsB(
+pub fn rays_from_neuronsA_to_neuronsB<Z: arrayfire::RealFloating  >(
 	con_rad: f64,
 
 	neuronA_pos: &arrayfire::Array<f64>,
@@ -119,24 +119,9 @@ pub fn rays_from_neuronsA_to_neuronsB(
 	*start_line =  arrayfire::tile(neuronA_pos, tile_dims);
 
 
-
-
-
 	*dir_line = neuronB_pos.clone();
 
-	/* 
-	let tile_dims = arrayfire::Dim4::new(&[1,neuronA_num,1,1]);
-
-	*dir_line = arrayfire::tile(neuronB_pos, tile_dims);
-
-	*dir_line = arrayfire::transpose(dir_line, false);
-
-	let dims = arrayfire::Dim4::new(&[space_dims, neuronA_num*neuronB_num , 1 , 1]);
-	*dir_line = arrayfire::moddims(dir_line, dims);
-
-	*dir_line = arrayfire::transpose(dir_line, false);
-
-	*/
+	
 	tileDown(
 		neuronA_num,
 	
@@ -144,12 +129,7 @@ pub fn rays_from_neuronsA_to_neuronsB(
 	);
 
 
-
 	*dir_line = dir_line.clone() - start_line.clone();
-
-
-
-
 
 
 	let con_rad_sq = con_rad*con_rad;
