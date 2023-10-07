@@ -19,13 +19,13 @@ const ZERO_F64: f64 = 0.0;
 
 
 
-pub fn generate_random_rays_to_center(
-	neuron_pos: &arrayfire::Array<f64>,
+pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
+	neuron_pos: &arrayfire::Array<Z>,
 	ray_num: u64,
 	con_rad: f64,
 
-	start_line: &mut arrayfire::Array<f64>,
-	dir_line: &mut arrayfire::Array<f64>
+	start_line: &mut arrayfire::Array<Z>,
+	dir_line: &mut arrayfire::Array<Z>
 	)
 {
 
