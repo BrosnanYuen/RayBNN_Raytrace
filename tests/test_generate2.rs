@@ -23,7 +23,7 @@ fn test_generate() {
     let target_input_pos_cpu: Vec<f32> = vec![4.1, 1.7, -0.9];
 	let mut target_input_pos = arrayfire::Array::new(&target_input_pos_cpu, arrayfire::Dim4::new(&[1, 3, 1, 1]));
 
-    arrayfire::print_gen("target_input_pos".to_string(), &target_input_pos, Some(6));
+    //arrayfire::print_gen("target_input_pos".to_string(), &target_input_pos, Some(6));
 
     let input_pos_cpu: Vec<f32> = vec![4.1, 1.7, -0.9,
                                         0.3, -2.0, 5.0,
@@ -35,7 +35,7 @@ fn test_generate() {
 	let mut input_pos = arrayfire::Array::new(&input_pos_cpu, arrayfire::Dim4::new(&[3, 7, 1, 1]));
     input_pos = arrayfire::transpose(&input_pos, false);
 
-    arrayfire::print_gen("input_pos".to_string(), &input_pos, Some(6));
+    //arrayfire::print_gen("input_pos".to_string(), &input_pos, Some(6));
 
 
     let input_idx_cpu: Vec<i32> = vec![1, 4, 6, 8, 12, 14, 15];
@@ -50,7 +50,7 @@ fn test_generate() {
         &mut input_pos,
         &mut input_idx,
     );
-    arrayfire::print_gen("input_pos".to_string(), &input_pos, Some(6));
+    //arrayfire::print_gen("input_pos".to_string(), &input_pos, Some(6));
 
     let mut input_pos_act_cpu: Vec<f32> = vec![4.1, 1.7, -0.9,
                                         0.3, -2.0, 5.0,
