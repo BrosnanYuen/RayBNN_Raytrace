@@ -29,6 +29,14 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
 	)
 {
 
+	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
+
+
+
+
+
+
 	let space_dims: u64 = neuron_pos.dims()[1];
 
 
@@ -43,7 +51,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
 
 
 	//Mag of dir_line
-	let mut mag2 = arrayfire::pow(dir_line,&two,false);
+	let mut mag2 = arrayfire::pow(dir_line,&TWO,false);
 	mag2 = arrayfire::sum(&mag2, 1);
 
 
@@ -55,7 +63,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
 	let mut rand_vec = (arrayfire::randu::<f64>(rand_dims) - 0.5f64);
 	
 	//Normalize random Vector
-	let mut mag = arrayfire::pow(&rand_vec,&two,false);
+	let mut mag = arrayfire::pow(&rand_vec,&TWO,false);
 	mag = arrayfire::sum(&mag, 1);
 	mag = arrayfire::sqrt(&mag) + epsilon2;
 
@@ -92,7 +100,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
 
 
 	//Scale dir line
-	let mut mag3 = arrayfire::pow(dir_line ,&two,false);
+	let mut mag3 = arrayfire::pow(dir_line ,&TWO,false);
 	mag3 = arrayfire::sum(&mag3, 1);
 	mag3 = arrayfire::sqrt(&mag3) + epsilon2;
 
