@@ -50,7 +50,7 @@ fn test_generate() {
         &mut input_pos,
         &mut input_idx,
     );
-
+    arrayfire::print_gen("input_pos".to_string(), &input_pos, Some(6));
 
     let mut input_pos_act_cpu: Vec<f32> = vec![4.1, 1.7, -0.9,
                                         0.3, -2.0, 5.0,
@@ -69,5 +69,14 @@ fn test_generate() {
 
 
 
-    
+    let mut input_idx_pred = vec!(i32::default();input_idx.elements());
+	input_idx.host(&mut input_idx_pred);
+
+    let mut input_idx_act: Vec<i32> = vec![1, 4, 6, 15];
+
+    assert_eq!(input_idx_pred, input_idx_act);
+
+
+
+
 }
