@@ -19,7 +19,7 @@ const NEGATIVE_ONE_F64: f64 = -1.0;
 
 
 
-pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
+pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	neuron_pos: &arrayfire::Array<Z>,
 	ray_num: u64,
 	con_rad: f64,
@@ -46,7 +46,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
 
 	*start_line =  arrayfire::tile(neuron_pos, tile_dims);
 
-	*dir_line =  start_line.clone()*-1.0f64;
+	*dir_line =  start_line.clone()*NEGATIVE_ONE;
 
 
 
