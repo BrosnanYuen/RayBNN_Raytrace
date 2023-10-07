@@ -95,6 +95,89 @@ pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 
 
 
+pub fn rays_from_neuronsA_to_neuronsB(
+	con_rad: f64,
+
+	neuronA_pos: &arrayfire::Array<f64>,
+	neuronB_pos: &arrayfire::Array<f64>,
+
+	start_line: &mut arrayfire::Array<f64>,
+	dir_line: &mut arrayfire::Array<f64>,
+
+	input_idx: &mut arrayfire::Array<i32>,
+	hidden_idx: &mut arrayfire::Array<i32>,
+	)
+{
+
+	let space_dims: u64 = neuronA_pos.dims()[1];
+
+	let neuronA_num: u64 = neuronA_pos.dims()[0];
+	let neuronB_num: u64 = neuronB_pos.dims()[0];
+
+	let tile_dims = arrayfire::Dim4::new(&[neuronB_num,1,1,1]);
+
+	*start_line =  arrayfire::tile(neuronA_pos, tile_dims);
+
+
+
+
+
+	*dir_line = neuronB_pos.clone();
+
+	/* 
+	let tile_dims = arrayfire::Dim4::new(&[1,neuronA_num,1,1]);
+
+	*dir_line = arrayfire::tile(neuronB_pos, tile_dims);
+
+	*dir_line = arrayfire::transpose(dir_line, false);
+
+	let dims = arrayfire::Dim4::new(&[space_dims, neuronA_num*neuronB_num , 1 , 1]);
+	*dir_line = arrayfire::moddims(dir_line, dims);
+
+	*dir_line = arrayfire::transpose(dir_line, false);
+
+	*/
+	tileDown(
+		neuronA_num,
+	
+		dir_line
+	);
+
+
+
+	*dir_line = dir_line.clone() - start_line.clone();
+
+
+
+
+
+
+	let con_rad_sq = con_rad*con_rad;
+
+	let mut mag2 = arrayfire::pow(dir_line,&two,false);
+	mag2 = arrayfire::sum(&mag2, 1);
+
+	//  (con_rad_sq >= mag2 )
+	let CMPRET = arrayfire::ge(&con_rad_sq, &mag2, false);
+	drop(mag2);
+
+	//Lookup  1 >= dir_line  >= 0
+	let idx_intersect = arrayfire::locate(&CMPRET);
+	drop(CMPRET);
+
+	*start_line = arrayfire::lookup(start_line, &idx_intersect, 0);
+
+	*dir_line = arrayfire::lookup(dir_line, &idx_intersect, 0);
+
+	*input_idx = arrayfire::lookup(input_idx, &idx_intersect, 0);
+
+	*hidden_idx = arrayfire::lookup(hidden_idx, &idx_intersect, 0);
+
+}
+
+
+
+
 
 
 
