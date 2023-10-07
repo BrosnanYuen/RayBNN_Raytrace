@@ -63,6 +63,7 @@ fn test_line_sphere_batchV2() {
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let mut intersect = arrayfire::constant::<bool>(false,single_dims);
     
+    /*
     RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batch(
         3,
         &start_line,
@@ -73,11 +74,28 @@ fn test_line_sphere_batchV2() {
     
         &mut intersect
     );
+    */
+
+
+    RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batchV2(
+        3,
     
-        assert_eq!(intersect.dims()[0], 8 );
-        assert_eq!(intersect.dims()[1], 1 );
-        assert_eq!(intersect.dims()[2], 12 );
+        1,
     
+        &circle_center,
+        &circle_radius,
+    
+        &mut start_line,
+        &mut dir_line,
+    
+        &mut input_idx,
+        &mut hidden_idx,
+    );
+
+    assert_eq!(intersect.dims()[0], 8 );
+    assert_eq!(intersect.dims()[1], 1 );
+    assert_eq!(intersect.dims()[2], 12 );
+
     //arrayfire::print_gen("intersect".to_string(), &intersect,Some(6));
     
     let mut intersect_cpu = vec!(bool::default();intersect.elements());
