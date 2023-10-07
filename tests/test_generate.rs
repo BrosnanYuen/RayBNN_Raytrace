@@ -37,7 +37,7 @@ fn test_generate() {
     assert_eq!(input_arr.dims()[0], 7);
     assert_eq!(input_arr.dims()[1], 3);
 
-    RayBNN_Raytrace::Generate::Ray::tileDown(repeat_num, &mut input_arr);
+    RayBNN_Raytrace::Generate::Fixed::tileDown(repeat_num, &mut input_arr);
 
     assert_eq!(input_arr.dims()[0], repeat_num*7);
     assert_eq!(input_arr.dims()[1], 3);
@@ -82,7 +82,7 @@ fn test_generate() {
     assert_eq!(input_arr.dims()[0], 7);
     assert_eq!(input_arr.dims()[1], 3);
 
-    RayBNN_Raytrace::Generate::Ray::tileDown(repeat_num, &mut input_arr);
+    RayBNN_Raytrace::Generate::Fixed::tileDown(repeat_num, &mut input_arr);
 
     assert_eq!(input_arr.dims()[0], repeat_num*7);
     assert_eq!(input_arr.dims()[1], 3);
@@ -130,7 +130,7 @@ fn test_generate() {
     assert_eq!(input_arr.dims()[0], 7);
     assert_eq!(input_arr.dims()[1], 3);
 
-    RayBNN_Raytrace::Generate::Ray::tileDown(repeat_num, &mut input_arr);
+    RayBNN_Raytrace::Generate::Fixed::tileDown(repeat_num, &mut input_arr);
 
     assert_eq!(input_arr.dims()[0], repeat_num*7);
     assert_eq!(input_arr.dims()[1], 3);

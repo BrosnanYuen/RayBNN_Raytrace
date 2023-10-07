@@ -42,7 +42,7 @@ fn test_generate() {
 	let mut input_idx = arrayfire::Array::new(&input_idx_cpu, arrayfire::Dim4::new(&[7, 1, 1, 1]));
 
 
-    RayBNN_Raytrace::Generate::Ray::filter_rays(
+    RayBNN_Raytrace::Generate::Fixed::filter_rays(
         con_rad,
     
         &target_input_pos,
