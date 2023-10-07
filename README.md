@@ -59,4 +59,20 @@ RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batch(
 ```
 
 
+# Line Sphere Intersection Batch V2
+```
+RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batchV2(
+    3,
 
+    1,
+
+    &circle_center,
+    &circle_radius,
+
+    &mut start_line,
+    &mut dir_line,
+
+    &mut input_idx,
+    &mut hidden_idx,
+);
+```
