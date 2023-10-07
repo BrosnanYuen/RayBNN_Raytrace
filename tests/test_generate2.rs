@@ -18,7 +18,7 @@ fn test_generate() {
     arrayfire::set_device(DEVICE);
 
 
-    let con_rad = 6.2;
+    let con_rad = 8.2;
 
     let target_input_pos_cpu: Vec<f32> = vec![4.1, 1.7, -0.9];
 	let mut target_input_pos = arrayfire::Array::new(&target_input_pos_cpu, arrayfire::Dim4::new(&[1, 3, 1, 1]));
@@ -52,6 +52,22 @@ fn test_generate() {
     );
 
 
+    let mut input_pos_act_cpu: Vec<f32> = vec![4.1, 1.7, -0.9,
+                                        0.3, -2.0, 5.0,
+                                        -1.0, 0.2, -3.1,
+                                        3.4, 2.0, 2.7];
+	let mut input_pos_act = arrayfire::Array::new(&input_pos_act_cpu, arrayfire::Dim4::new(&[3, 4, 1, 1]));
+    input_pos_act = arrayfire::transpose(&input_pos_act, false);
+
+    input_pos_act.host(&mut input_pos_act_cpu);
+
+    let mut input_pos_pred = vec!(f32::default();input_pos.elements());
+	input_pos.host(&mut input_pos_pred);
 
 
+    assert_eq!(input_pos_pred, input_pos_act_cpu);
+
+
+
+    
 }
