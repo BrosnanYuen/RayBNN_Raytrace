@@ -97,7 +97,7 @@ fn test_line_sphere_batchV2() {
     );
 
 
-    arrayfire::print_gen("input_idx".to_string(), &input_idx,Some(6));
+    //arrayfire::print_gen("input_idx".to_string(), &input_idx,Some(6));
     
     
     let mut input_idx_pred = vec!(i32::default();input_idx.elements());
@@ -108,6 +108,17 @@ fn test_line_sphere_batchV2() {
     assert_eq!(input_idx_pred, input_idx_act);
 
     
+
+
+
+
+
+    let mut hidden_idx_pred = vec!(i32::default();hidden_idx.elements());
+	hidden_idx.host(&mut hidden_idx_pred);
+
+    let mut hidden_idx_act: Vec<i32> = vec![942, 9126];
+
+    assert_eq!(hidden_idx_pred, hidden_idx_act);
 
 
 }
