@@ -18,6 +18,11 @@ const EPSILON2_F64: f64 = 1.0e-8;
 
 
 
+const ONE_HALF_F64: f64 = 0.5;
+
+
+
+
 
 pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	neuron_pos: &arrayfire::Array<Z>,
@@ -38,6 +43,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	let EPSILON2 = arrayfire::constant::<f64>(EPSILON2_F64,single_dims).cast::<Z>();
 
 
+	let ONE_HALF = arrayfire::constant::<f64>(ONE_HALF_F64,single_dims).cast::<Z>();
 
 
 
