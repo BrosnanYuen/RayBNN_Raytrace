@@ -98,16 +98,22 @@ pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 pub fn rays_from_neuronsA_to_neuronsB<Z: arrayfire::RealFloating  >(
 	con_rad: f64,
 
-	neuronA_pos: &arrayfire::Array<f64>,
-	neuronB_pos: &arrayfire::Array<f64>,
+	neuronA_pos: &arrayfire::Array<Z>,
+	neuronB_pos: &arrayfire::Array<Z>,
 
-	start_line: &mut arrayfire::Array<f64>,
-	dir_line: &mut arrayfire::Array<f64>,
+	start_line: &mut arrayfire::Array<Z>,
+	dir_line: &mut arrayfire::Array<Z>,
 
 	input_idx: &mut arrayfire::Array<i32>,
 	hidden_idx: &mut arrayfire::Array<i32>,
 	)
 {
+	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
+
+
+
+
 
 	let space_dims: u64 = neuronA_pos.dims()[1];
 
