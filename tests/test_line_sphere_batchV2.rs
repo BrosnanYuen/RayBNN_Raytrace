@@ -100,6 +100,13 @@ fn test_line_sphere_batchV2() {
     arrayfire::print_gen("input_idx".to_string(), &input_idx,Some(6));
     
     
+    let mut input_idx_pred = vec!(i32::default();input_idx.elements());
+	input_idx.host(&mut input_idx_pred);
+
+    let mut input_idx_act: Vec<i32> = vec![42, 126];
+
+    assert_eq!(input_idx_pred, input_idx_act);
+
     
 
 
