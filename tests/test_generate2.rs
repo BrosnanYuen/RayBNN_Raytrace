@@ -37,13 +37,18 @@ fn test_generate() {
 
     arrayfire::print_gen("input_pos".to_string(), &input_pos, Some(6));
 
+
+    let input_idx_cpu: Vec<i32> = vec![1, 4, 6, 8, 12, 14, 15];
+	let mut input_idx = arrayfire::Array::new(&input_idx_cpu, arrayfire::Dim4::new(&[7, 1, 1, 1]));
+
+
     RayBNN_Raytrace::Generate::Ray::filter_rays(
         con_rad,
     
         &target_input_pos,
     
         &mut input_pos,
-        input_idx: &mut arrayfire::Array<i32>,
+        &mut input_idx,
     );
 
 
