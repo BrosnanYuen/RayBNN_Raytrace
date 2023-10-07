@@ -95,7 +95,7 @@ pub fn filter_rays<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 
 
 
-pub fn rays_from_neuronsA_to_neuronsB<Z: arrayfire::RealFloating  >(
+pub fn rays_from_neuronsA_to_neuronsB<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	con_rad: f64,
 
 	neuronA_pos: &arrayfire::Array<Z>,
@@ -140,7 +140,7 @@ pub fn rays_from_neuronsA_to_neuronsB<Z: arrayfire::RealFloating  >(
 
 	let con_rad_sq = con_rad*con_rad;
 
-	let mut mag2 = arrayfire::pow(dir_line,&two,false);
+	let mut mag2 = arrayfire::pow(dir_line,&TWO,false);
 	mag2 = arrayfire::sum(&mag2, 1);
 
 	//  (con_rad_sq >= mag2 )
