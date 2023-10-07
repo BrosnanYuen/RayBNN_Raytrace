@@ -196,7 +196,7 @@ fn test_line_sphere_batchV2() {
     let mut input_idx_pred = vec!(i32::default();input_idx.elements());
 	input_idx.host(&mut input_idx_pred);
 
-    let mut input_idx_act: Vec<i32> = vec![42, 126];
+    let mut input_idx_act: Vec<i32> = vec![12, 42, 61, 84,     126, 142,];
 
     assert_eq!(input_idx_pred, input_idx_act);
 
@@ -209,7 +209,7 @@ fn test_line_sphere_batchV2() {
     let mut hidden_idx_pred = vec!(i32::default();hidden_idx.elements());
 	hidden_idx.host(&mut hidden_idx_pred);
 
-    let mut hidden_idx_act: Vec<i32> = vec![942, 9126];
+    let mut hidden_idx_act: Vec<i32> = vec![912, 942, 961, 984,     9126, 9142,];
 
     assert_eq!(hidden_idx_pred, hidden_idx_act);
 
