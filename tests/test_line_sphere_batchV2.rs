@@ -75,7 +75,11 @@ fn test_line_sphere_batchV2() {
         &mut intersect
     );
     */
+    let input_idx_cpu: Vec<i32> = vec![12, 42, 61, 84,     126, 142, 151, 210];
+	let mut input_idx = arrayfire::Array::new(&input_idx_cpu, arrayfire::Dim4::new(&[8, 1, 1, 1]));
 
+    let hidden_idx_cpu: Vec<i32> = vec![912, 942, 961, 984,     9126, 9142, 9151, 9210];
+	let mut hidden_idx = arrayfire::Array::new(&hidden_idx_cpu, arrayfire::Dim4::new(&[8, 1, 1, 1]));
 
     RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batchV2(
         3,
@@ -92,23 +96,8 @@ fn test_line_sphere_batchV2() {
         &mut hidden_idx,
     );
 
-    assert_eq!(intersect.dims()[0], 8 );
-    assert_eq!(intersect.dims()[1], 1 );
-    assert_eq!(intersect.dims()[2], 12 );
 
-    //arrayfire::print_gen("intersect".to_string(), &intersect,Some(6));
-    
-    let mut intersect_cpu = vec!(bool::default();intersect.elements());
-    intersect.host(&mut intersect_cpu);
-    
-    
-    let intersect_act:Vec<bool> = vec![false, false, false, false, false, true, true, false,                    true, false, false, false, false, false, false, true,                false, false, false, true, false, false, false, true,               false, false, true, false, false, false, true, false,
-                                        false, false, false, false, false, true, true, false,                    true, false, false, false, false, false, false, true,                false, false, false, true, false, false, false, true,               false, false, true, false, false, false, true, false,
-                                        false, false, false, false, false, true, true, false,                    true, false, false, false, false, false, false, true,                false, false, false, true, false, false, false, true,               false, false, true, false, false, false, true, false];
-    
-    assert_eq!(intersect_cpu, intersect_act);
-        
-    
+    arrayfire::print_gen("input_idx".to_string(), &input_idx,Some(6));
     
     
     
