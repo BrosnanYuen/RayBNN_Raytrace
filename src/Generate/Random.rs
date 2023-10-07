@@ -12,7 +12,7 @@ const ONE_F64: f64 = 1.0;
 const ZERO_F64: f64 = 0.0;
 
 
-
+const NEGATIVE_ONE_F64: f64 = -1.0;
 
 
 
@@ -32,6 +32,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating >(
 	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
 
+	let NEGATIVE_ONE = arrayfire::constant::<f64>(NEGATIVE_ONE_F64,single_dims).cast::<Z>();
 
 
 
