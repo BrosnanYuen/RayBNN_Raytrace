@@ -139,6 +139,7 @@ pub fn rays_from_neuronsA_to_neuronsB<Z: arrayfire::RealFloating<AggregateOutTyp
 
 
 	let con_rad_sq = con_rad*con_rad;
+	let con_rad_sq = arrayfire::constant(con_rad_sq, single_dims).cast::<Z>();
 
 	let mut mag2 = arrayfire::pow(dir_line,&TWO,false);
 	mag2 = arrayfire::sum(&mag2, 1);
