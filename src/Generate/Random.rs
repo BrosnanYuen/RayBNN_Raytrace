@@ -24,7 +24,7 @@ const ONE_HALF_F64: f64 = 0.5;
 
 
 
-pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
+pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutType = Z, UnaryOutType = Z>  >(
 	neuron_pos: &arrayfire::Array<Z>,
 	ray_num: u64,
 	con_rad: f64,
@@ -73,7 +73,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	//Generate random vectors
 	let start_line_num =  start_line.dims()[0];
 	let rand_dims = arrayfire::Dim4::new(&[start_line_num,space_dims,1,1]);
-	let mut rand_vec = (arrayfire::randu::<f64>(rand_dims) - 0.5f64);
+	let mut rand_vec = (arrayfire::randu::<Z>(rand_dims) - ONE_HALF);
 	
 	//Normalize random Vector
 	let mut mag = arrayfire::pow(&rand_vec,&TWO,false);
