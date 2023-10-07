@@ -105,7 +105,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 
 	//Random scale
 	let rand2_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
-	let mut rand2_vec = 2.0f64*arrayfire::randu::<f64>(rand2_dims) ;
+	let mut rand2_vec = TWO*arrayfire::randu::<Z>(rand2_dims) ;
 	projvec = arrayfire::mul(&projvec, &rand2_vec, true);
 
 	*dir_line = dir_line.clone() + projvec;
