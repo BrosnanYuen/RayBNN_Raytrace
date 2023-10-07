@@ -14,7 +14,7 @@ const ZERO_F64: f64 = 0.0;
 
 const NEGATIVE_ONE_F64: f64 = -1.0;
 
-
+const EPSILON2_F64: f64 = 1.0e-8;
 
 
 
@@ -33,6 +33,12 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
 
 	let NEGATIVE_ONE = arrayfire::constant::<f64>(NEGATIVE_ONE_F64,single_dims).cast::<Z>();
+
+
+	let EPSILON2 = arrayfire::constant::<f64>(EPSILON2_F64,single_dims).cast::<Z>();
+
+
+
 
 
 
