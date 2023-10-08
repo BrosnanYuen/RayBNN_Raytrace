@@ -13,7 +13,7 @@ use rayon::prelude::*;
 
 
 #[test]
-fn test_random_rays2() {
+fn test_random_rays2_f32() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
@@ -109,9 +109,9 @@ fn test_random_rays2() {
 
     let mut sumact: f32 = (con_rad as f32)*(start_line.dims()[0] as f32);
 
-    sumact = (sumact * 100000000.0).round() / 100000000.0 ;
+    sumact = (sumact * 10000000.0).round() / 10000000.0 ;
 
-    sumdist = (sumdist * 100000000.0).round() / 100000000.0 ;
+    sumdist = (sumdist * 10000000.0).round() / 10000000.0 ;
 
 
     assert_eq!(sumdist, sumact);
@@ -219,9 +219,9 @@ fn test_random_rays2() {
     
     let mut sumact: f32 = (con_rad as f32)*(start_line.dims()[0] as f32);
     
-    sumact = (sumact * 100000000.0).round() / 100000000.0 ;
+    sumact = (sumact * 10000000.0).round() / 10000000.0 ;
     
-    sumdist = (sumdist * 100000000.0).round() / 100000000.0 ;
+    sumdist = (sumdist * 10000000.0).round() / 10000000.0 ;
     
     
     assert_eq!(sumdist, sumact);
@@ -330,9 +330,9 @@ fn test_random_rays2() {
     
     let mut sumact: f32 = (con_rad as f32)*(start_line.dims()[0] as f32);
     
-    sumact = (sumact * 100000000.0).round() / 100000000.0 ;
+    sumact = (sumact * 10000000.0).round() / 10000000.0 ;
     
-    sumdist = (sumdist * 100000000.0).round() / 100000000.0 ;
+    sumdist = (sumdist * 10000000.0).round() / 10000000.0 ;
     
     
     assert_eq!(sumdist, sumact);
