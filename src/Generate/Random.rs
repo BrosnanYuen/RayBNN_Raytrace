@@ -134,7 +134,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 
 
 
-pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType = Z, UnaryOutType = Z>  >(
+pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutType = Z>  >(
 	neuron_pos: &arrayfire::Array<Z>,
 	ray_num: u64,
 	con_rad: f64,
