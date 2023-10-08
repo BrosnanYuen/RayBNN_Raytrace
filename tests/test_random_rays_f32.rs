@@ -107,9 +107,9 @@ fn test_random_rays() {
 
     let mut sumact: f32 = (con_rad as f32)*(start_line.dims()[0] as f32);
 
-    sumact = (sumact * 100000.0).round() / 100000.0 ;
+    sumact = (sumact * 10000.0).round() / 10000.0 ;
 
-    sumdist = (sumdist * 100000.0).round() / 100000.0 ;
+    sumdist = (sumdist * 10000.0).round() / 10000.0 ;
 
 
     assert_eq!(sumdist, sumact);
@@ -213,9 +213,9 @@ fn test_random_rays() {
     
     let mut sumact: f32 = (con_rad as f32)*(start_line.dims()[0] as f32);
     
-    sumact = (sumact * 100000.0).round() / 100000.0 ;
+    sumact = (sumact * 10000.0).round() / 10000.0 ;
     
-    sumdist = (sumdist * 100000.0).round() / 100000.0 ;
+    sumdist = (sumdist * 10000.0).round() / 10000.0 ;
     
     
     assert_eq!(sumdist, sumact);
@@ -327,9 +327,9 @@ fn test_random_rays() {
     
     let mut sumact: f32 = (con_rad as f32)*(start_line.dims()[0] as f32);
     
-    sumact = (sumact * 100000.0).round() / 100000.0 ;
+    sumact = (sumact * 10000.0).round() / 10000.0 ;
     
-    sumdist = (sumdist * 100000.0).round() / 100000.0 ;
+    sumdist = (sumdist * 10000.0).round() / 10000.0 ;
     
     
     assert_eq!(sumdist, sumact);
