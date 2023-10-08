@@ -39,12 +39,9 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 
 	let NEGATIVE_ONE = arrayfire::constant::<f64>(NEGATIVE_ONE_F64,single_dims).cast::<Z>();
 
-
 	let EPSILON2 = arrayfire::constant::<f64>(EPSILON2_F64,single_dims).cast::<Z>();
 
-
 	let ONE_HALF = arrayfire::constant::<f64>(ONE_HALF_F64,single_dims).cast::<Z>();
-
 
 	let con_rad_Z = arrayfire::constant::<f64>(con_rad,single_dims).cast::<Z>();
 
@@ -146,6 +143,26 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType 
 	dir_line: &mut arrayfire::Array<Z>
 	)
 {
+	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
+
+	let NEGATIVE_ONE = arrayfire::constant::<f64>(NEGATIVE_ONE_F64,single_dims).cast::<Z>();
+
+	let EPSILON2 = arrayfire::constant::<f64>(EPSILON2_F64,single_dims).cast::<Z>();
+
+	let ONE_HALF = arrayfire::constant::<f64>(ONE_HALF_F64,single_dims).cast::<Z>();
+
+	let con_rad_Z = arrayfire::constant::<f64>(con_rad,single_dims).cast::<Z>();
+
+
+
+
+
+
+
+
+
+
 
 	let space_dims: u64 = neuron_pos.dims()[1];
 
