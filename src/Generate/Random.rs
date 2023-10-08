@@ -46,6 +46,10 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	let ONE_HALF = arrayfire::constant::<f64>(ONE_HALF_F64,single_dims).cast::<Z>();
 
 
+	let con_rad_Z = arrayfire::constant::<f64>(con_rad,single_dims).cast::<Z>();
+
+
+
 
 
 
@@ -117,7 +121,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	mag3 = arrayfire::sum(&mag3, 1);
 	mag3 = arrayfire::sqrt(&mag3) + EPSILON2;
 
-	*dir_line = con_rad*arrayfire::div(dir_line, &mag3, true);
+	*dir_line = con_rad_Z*arrayfire::div(dir_line, &mag3, true);
 
 
 
