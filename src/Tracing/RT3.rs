@@ -288,8 +288,8 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 
 		//Generate rays starting from input neurons
-		start_line = arrayfire::constant::<f64>(0.0,single_dims);
-		dir_line = arrayfire::constant::<f64>(0.0,single_dims);
+		start_line = arrayfire::constant::<Z>(0.0,single_dims);
+		dir_line = arrayfire::constant::<Z>(0.0,single_dims);
 
 		
 
@@ -348,7 +348,7 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 		raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
 	
 		
-		circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
+		circle_radius = arrayfire::constant::<Z>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
 
 		
 		if ray_neuron_intersect && (hidden_size > 1)
@@ -407,7 +407,7 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 		raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
 	
-		circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1]));
+		circle_radius = arrayfire::constant::<Z>(neuron_rad,arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1]));
 		
 		if ray_glia_intersect && (glia_pos.dims()[0] > 1)
 		{
