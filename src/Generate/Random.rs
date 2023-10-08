@@ -137,3 +137,75 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 
 
 
+pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType = Z, UnaryOutType = Z>  >(
+	neuron_pos: &arrayfire::Array<Z>,
+	ray_num: u64,
+	con_rad: f64,
+
+	start_line: &mut arrayfire::Array<Z>,
+	dir_line: &mut arrayfire::Array<Z>
+	)
+{
+
+	let space_dims: u64 = neuron_pos.dims()[1];
+
+
+
+
+
+
+	let tile_dims = arrayfire::Dim4::new(&[ray_num,1,1,1]);
+
+	*start_line =  arrayfire::tile(neuron_pos, tile_dims);
+
+
+
+	if space_dims == 2
+	{
+		let start_line_num =  start_line.dims()[0];
+		let t_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
+		let t = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
+	
+		let x = con_rad*arrayfire::cos(&t);
+		let y = con_rad*arrayfire::sin(&t);
+	
+		*dir_line = arrayfire::join(1, &x, &y);
+	}
+	else
+	{
+		let start_line_num =  start_line.dims()[0];
+		let t_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
+		let mut t = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
+	
+		*dir_line = con_rad*arrayfire::cos(&t);
+		for i in 1..(space_dims-1)
+		{
+			let mut newd = arrayfire::sin(&t);
+			
+			let newt = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
+			let lastd = arrayfire::cos(&newt);
+			newd = arrayfire::join(1, &newd, &lastd);
+			newd = con_rad*arrayfire::product(&newd,1);
+
+
+			*dir_line = arrayfire::join(1, dir_line, &newd);
+			t = arrayfire::join(1, &t, &newt);
+		}
+
+		//let newt = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
+		//t = arrayfire::join(1, &t, &newt);
+		let mut newd = arrayfire::sin(&t);
+		newd = con_rad*arrayfire::product(&newd,1);
+		*dir_line = arrayfire::join(1, dir_line, &newd);
+	
+	}
+	
+
+}
+
+
+
+
+
+
+
