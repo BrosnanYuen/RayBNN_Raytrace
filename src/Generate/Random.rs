@@ -202,7 +202,7 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType 
 			let newt = TWO*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
 			let lastd = arrayfire::cos(&newt);
 			newd = arrayfire::join(1, &newd, &lastd);
-			newd = con_rad*arrayfire::product(&newd,1);
+			newd = con_rad_Z*arrayfire::product(&newd,1);
 
 
 			*dir_line = arrayfire::join(1, dir_line, &newd);
@@ -211,7 +211,7 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType 
 
 		
 		let mut newd = arrayfire::sin(&t);
-		newd = con_rad*arrayfire::product(&newd,1);
+		newd = con_rad_Z*arrayfire::product(&newd,1);
 		*dir_line = arrayfire::join(1, dir_line, &newd);
 	
 	}
