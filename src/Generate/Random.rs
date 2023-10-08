@@ -181,7 +181,7 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType 
 	{
 		let start_line_num =  start_line.dims()[0];
 		let t_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
-		let t = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
+		let t = TWO*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
 	
 		let x = con_rad*arrayfire::cos(&t);
 		let y = con_rad*arrayfire::sin(&t);
@@ -192,14 +192,14 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType 
 	{
 		let start_line_num =  start_line.dims()[0];
 		let t_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
-		let mut t = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
+		let mut t = TWO*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
 	
 		*dir_line = con_rad*arrayfire::cos(&t);
 		for i in 1..(space_dims-1)
 		{
 			let mut newd = arrayfire::sin(&t);
 			
-			let newt = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
+			let newt = TWO*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
 			let lastd = arrayfire::cos(&newt);
 			newd = arrayfire::join(1, &newd, &lastd);
 			newd = con_rad*arrayfire::product(&newd,1);
@@ -209,8 +209,7 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType 
 			t = arrayfire::join(1, &t, &newt);
 		}
 
-		//let newt = two*std::f64::consts::PI*arrayfire::randu::<f64>(t_dims);
-		//t = arrayfire::join(1, &t, &newt);
+		
 		let mut newd = arrayfire::sin(&t);
 		newd = con_rad*arrayfire::product(&newd,1);
 		*dir_line = arrayfire::join(1, dir_line, &newd);
