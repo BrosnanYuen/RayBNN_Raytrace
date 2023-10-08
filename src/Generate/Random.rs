@@ -82,7 +82,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	//Normalize random Vector
 	let mut mag = arrayfire::pow(&rand_vec,&TWO,false);
 	mag = arrayfire::sum(&mag, 1);
-	mag = arrayfire::sqrt(&mag) + EPSILON2;
+	mag = arrayfire::sqrt(&mag) + EPSILON2.clone();
 
 	
 	//Scale random vector to connection radius
@@ -99,7 +99,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	let mut projvec = arrayfire::mul(&rand_vec, dir_line, false);
 	projvec = arrayfire::sum(&projvec, 1);
 
-	mag2 = mag2 + EPSILON2;
+	mag2 = mag2 + EPSILON2.clone();
 	projvec = arrayfire::div(&projvec, &mag2, false);
 	drop(mag2);
 
@@ -109,7 +109,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 
 	//Random scale
 	let rand2_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
-	let mut rand2_vec = TWO*arrayfire::randu::<Z>(rand2_dims) ;
+	let mut rand2_vec = TWO.clone()*arrayfire::randu::<Z>(rand2_dims) ;
 	projvec = arrayfire::mul(&projvec, &rand2_vec, true);
 
 	*dir_line = dir_line.clone() + projvec;
@@ -119,7 +119,7 @@ pub fn generate_random_rays_to_center<Z: arrayfire::RealFloating<AggregateOutTyp
 	//Scale dir line
 	let mut mag3 = arrayfire::pow(dir_line ,&TWO,false);
 	mag3 = arrayfire::sum(&mag3, 1);
-	mag3 = arrayfire::sqrt(&mag3) + EPSILON2;
+	mag3 = arrayfire::sqrt(&mag3) + EPSILON2.clone();
 
 	*dir_line = con_rad_Z*arrayfire::div(dir_line, &mag3, true);
 
