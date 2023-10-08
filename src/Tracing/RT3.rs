@@ -31,16 +31,16 @@ WColIdx:        Column vector in the COO sparse matrix
 
 */
 
-pub fn RT3_distance_limited_directly_connected(
+pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 	raytrace_options: &raytrace_option_type,
 
 	netdata: &network_metadata_type,
-	glia_pos_total: &arrayfire::Array<f64>,
+	glia_pos_total: &arrayfire::Array<Z>,
 
-	input_pos_total: &arrayfire::Array<f64>,
+	input_pos_total: &arrayfire::Array<Z>,
 	input_idx_total: &arrayfire::Array<i32>,
 
-	hidden_pos_total: &arrayfire::Array<f64>,
+	hidden_pos_total: &arrayfire::Array<Z>,
 	hidden_idx_total: &arrayfire::Array<i32>,
 
 	
