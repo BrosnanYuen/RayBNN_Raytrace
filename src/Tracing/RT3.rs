@@ -66,13 +66,13 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 
 
-	let time_step: u64 = modeldata_int["time_step"].clone();
-	let nratio: u64 = modeldata_int["nratio"].clone();
-	let neuron_std: u64 = modeldata_int["neuron_std"].clone();
-	let sphere_rad: u64 = modeldata_int["sphere_rad"].clone();
-	let neuron_rad: u64 = modeldata_int["neuron_rad"].clone();
-	let con_rad: u64 = modeldata_int["con_rad"].clone();
-	let init_prob: u64 = modeldata_int["init_prob"].clone();
+	let time_step: f64 = modeldata_float["time_step"].clone();
+	let nratio: f64 = modeldata_float["nratio"].clone();
+	let neuron_std: f64 = modeldata_float["neuron_std"].clone();
+	let sphere_rad: f64 = modeldata_float["sphere_rad"].clone();
+	let neuron_rad: f64 = modeldata_float["neuron_rad"].clone();
+	let con_rad: f64 = modeldata_float["con_rad"].clone();
+	let init_prob: f64 = modeldata_float["init_prob"].clone();
 
 
 
