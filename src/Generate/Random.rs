@@ -177,10 +177,10 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<ProductOutType = 
 	{
 		let start_line_num =  start_line.dims()[0];
 		let t_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
-		let t = TWO_PI*arrayfire::randu::<Z>(t_dims);
+		let t = TWO_PI.clone()*arrayfire::randu::<Z>(t_dims);
 	
-		let x = con_rad_Z*arrayfire::cos(&t);
-		let y = con_rad_Z*arrayfire::sin(&t);
+		let x = con_rad_Z.clone()*arrayfire::cos(&t);
+		let y = con_rad_Z.clone()*arrayfire::sin(&t);
 	
 		*dir_line = arrayfire::join(1, &x, &y);
 	}
@@ -188,17 +188,17 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<ProductOutType = 
 	{
 		let start_line_num =  start_line.dims()[0];
 		let t_dims = arrayfire::Dim4::new(&[start_line_num,1,1,1]);
-		let mut t = TWO_PI*arrayfire::randu::<Z>(t_dims);
+		let mut t = TWO_PI.clone()*arrayfire::randu::<Z>(t_dims);
 	
-		*dir_line = con_rad_Z*arrayfire::cos(&t);
+		*dir_line = con_rad_Z.clone()*arrayfire::cos(&t);
 		for i in 1..(space_dims-1)
 		{
 			let mut newd = arrayfire::sin(&t);
 			
-			let newt = TWO_PI*arrayfire::randu::<Z>(t_dims);
+			let newt = TWO_PI.clone()*arrayfire::randu::<Z>(t_dims);
 			let lastd = arrayfire::cos(&newt);
 			newd = arrayfire::join(1, &newd, &lastd);
-			newd = con_rad_Z*arrayfire::product(&newd,1);
+			newd = con_rad_Z.clone()*arrayfire::product(&newd,1);
 
 
 			*dir_line = arrayfire::join(1, dir_line, &newd);
