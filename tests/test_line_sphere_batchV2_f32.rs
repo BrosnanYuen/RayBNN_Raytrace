@@ -13,7 +13,7 @@ use rayon::prelude::*;
 
 
 #[test]
-fn test_line_sphere_batchV2() {
+fn test_line_sphere_batchV2_f32() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 

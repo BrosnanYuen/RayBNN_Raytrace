@@ -13,7 +13,7 @@ use rayon::prelude::*;
 
 
 #[test]
-fn test_generate() {
+fn test_generate2() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
