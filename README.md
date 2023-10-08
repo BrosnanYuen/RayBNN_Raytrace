@@ -25,7 +25,7 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 RayBNN_DataLoader = "0.1.3"
 RayBNN_Sparse = "0.1.2"
-RayBNN_Raytrace = "0.1.2"
+RayBNN_Raytrace = "0.1.3"
 ```
 
 # List of Examples
@@ -76,3 +76,7 @@ RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batchV2(
     &mut hidden_idx,
 );
 ```
+
+
+
+
