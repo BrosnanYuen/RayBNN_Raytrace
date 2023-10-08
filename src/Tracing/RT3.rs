@@ -175,17 +175,17 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 	//Get input and hidden positions
 
-	let mut hidden_pos =  arrayfire::constant::<f64>(0.0,single_dims);
+	let mut hidden_pos =  arrayfire::constant::<Z>(0.0,single_dims);
 
  
 
-	let mut circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
+	let mut circle_radius = arrayfire::constant::<Z>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
 
 
 
 
-	let mut start_line = arrayfire::constant::<f64>(0.0,single_dims);
-    let mut dir_line = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut start_line = arrayfire::constant::<Z>(0.0,single_dims);
+    let mut dir_line = arrayfire::constant::<Z>(0.0,single_dims);
 
 
 
@@ -221,17 +221,16 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 	let mut select_input_idx: u64 = 0;
 
 
-	let mut input_pos = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut input_pos = arrayfire::constant::<Z>(0.0,single_dims);
 	let mut input_idx  = arrayfire::constant::<i32>(0,single_dims);
 
 
-	let mut glia_pos = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut glia_pos = arrayfire::constant::<Z>(0.0,single_dims);
 	let mut glia_idx  = arrayfire::constant::<i32>(0,single_dims);
 
 
 	let mut same_counter: u64 = 0;
-	let mut pivot_pos = vec![-sphere_rad*0.7f64; space_dims as usize];
-	let pivot_rad = 4.0f64*con_rad;
+
 	let mut nonoverlapping = true;
 
 	for vv in 0..max_rounds
@@ -239,30 +238,6 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 		select_input_idx = rand_vec.choose(&mut rng).unwrap().clone();
 		let mut target_input = arrayfire::row(input_pos_total, select_input_idx as i64);
 		
-
-		if ((vv % 10) == 0) && nonoverlapping
-		{
-
-			pivot_pos[0] = pivot_pos[0] + pivot_rad;
-
-			for idx in 0..space_dims
-			{
-				if pivot_pos[idx as usize] > sphere_rad*0.7f64
-				{
-					if idx == (space_dims-1)
-					{
-						nonoverlapping = false;
-						break;
-					}
-
-					pivot_pos[idx as usize] = -sphere_rad*0.7f64;
-					pivot_pos[(idx+1) as usize] = pivot_pos[(idx+1) as usize] + pivot_rad;
-				}
-			}
-
-			target_input = arrayfire::Array::new(&pivot_pos, arrayfire::Dim4::new(&[1, 3, 1, 1]));
-
-		}
 
 
 
