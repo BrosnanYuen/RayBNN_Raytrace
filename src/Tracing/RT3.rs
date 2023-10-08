@@ -64,32 +64,16 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 
 
-	let neuron_size: u64 = netdata.neuron_size.clone();
-	let input_size: u64 = input_pos_total.dims()[0];
-	let output_size: u64 = netdata.output_size.clone();
-	let proc_num: u64 = netdata.proc_num.clone();
-	let active_size: u64 = netdata.active_size.clone();
-	let space_dims: u64 = netdata.space_dims.clone();
-	let step_num: u64 = netdata.step_num.clone();
 
 
+	let time_step: u64 = modeldata_int["time_step"].clone();
+	let nratio: u64 = modeldata_int["nratio"].clone();
+	let neuron_std: u64 = modeldata_int["neuron_std"].clone();
+	let sphere_rad: u64 = modeldata_int["sphere_rad"].clone();
+	let neuron_rad: u64 = modeldata_int["neuron_rad"].clone();
+	let con_rad: u64 = modeldata_int["con_rad"].clone();
+	let init_prob: u64 = modeldata_int["init_prob"].clone();
 
-
-
-
-
-
-
-    
-
-
-	let time_step: f64 = netdata.time_step.clone();
-	let nratio: f64 = netdata.nratio.clone();
-	let neuron_std: f64 = netdata.neuron_std.clone();
-	let sphere_rad: f64 = netdata.sphere_rad.clone();
-	let neuron_rad: f64 = netdata.neuron_rad.clone();
-	let con_rad: f64 = netdata.con_rad.clone();
-	let init_prob: f64 = netdata.init_prob.clone();
 
 
 	let input_connection_num: u64 = raytrace_options.input_connection_num.clone();
