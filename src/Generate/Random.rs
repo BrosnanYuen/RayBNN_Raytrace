@@ -146,11 +146,7 @@ pub fn generate_random_uniform_rays<Z: arrayfire::RealFloating<AggregateOutType 
 	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 	let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<Z>();
 
-	let NEGATIVE_ONE = arrayfire::constant::<f64>(NEGATIVE_ONE_F64,single_dims).cast::<Z>();
-
-	let EPSILON2 = arrayfire::constant::<f64>(EPSILON2_F64,single_dims).cast::<Z>();
-
-	let PI = arrayfire::constant::<f64>(std::f64::consts::PI,single_dims).cast::<Z>();
+	let TWO_PI = arrayfire::constant::<f64>(TWO_F64*std::f64::consts::PI,single_dims).cast::<Z>();
 
 	let con_rad_Z = arrayfire::constant::<f64>(con_rad,single_dims).cast::<Z>();
 
