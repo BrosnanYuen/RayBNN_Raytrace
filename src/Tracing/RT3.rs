@@ -76,6 +76,13 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 
 
+
+	let input_connection_num: u64 = raytrace_option_int["input_connection_num"].clone();
+	let max_rounds: u64 = raytrace_option_int["max_rounds"].clone();
+	let ray_glia_intersect: bool = raytrace_option_int["ray_glia_intersect"].clone() == 1;
+	let ray_neuron_intersect: bool = raytrace_option_int["ray_neuron_intersect"].clone() == 1;
+
+
 	let input_connection_num: u64 = raytrace_options.input_connection_num.clone();
 	let max_rounds: u64 = raytrace_options.max_rounds.clone();
 	let ray_glia_intersect: bool = raytrace_options.ray_glia_intersect.clone();
