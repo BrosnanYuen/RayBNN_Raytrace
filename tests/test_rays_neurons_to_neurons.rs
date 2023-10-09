@@ -107,7 +107,34 @@ fn test_rays_neurons_to_neurons() {
     assert_eq!(start_line.dims()[1], 3 );
     assert_eq!(dir_line.dims()[1], 3 );
     
-    arrayfire::print_gen("start_line".to_string(), &start_line, Some(6));
+    //arrayfire::print_gen("start_line".to_string(), &start_line, Some(6));
+
+
+
+
+
+    let mut tiled_input_idx_pred = vec!(i32::default();tiled_input_idx.elements());
+	tiled_input_idx.host(&mut tiled_input_idx_pred);
+
+    let mut input_idx_act: Vec<i32> = vec![1, 2, 5, 7, 8, 9, 10, 1, 2, 5, 7, 8, 9, 10, 1, 2, 5, 7, 8, 9, 10, 1, 2, 5, 7, 8, 9, 10, 1, 2, 5, 7, 8, 9, 10];
+
+    assert_eq!(tiled_input_idx_pred, input_idx_act);
+
+
+
+
+
+
+    let mut tiled_hidden_idx_pred = vec!(i32::default();tiled_hidden_idx.elements());
+	tiled_hidden_idx.host(&mut tiled_hidden_idx_pred);
+
+    let mut hidden_idx_act: Vec<i32> = vec![12, 12, 12, 12, 12, 12, 12, 15, 15, 15, 15, 15, 15, 15, 17, 17, 17, 17, 17, 17, 17, 18, 18, 18, 18, 18, 18, 18, 19, 19, 19, 19, 19, 19, 19];
+
+    assert_eq!(tiled_hidden_idx_pred, hidden_idx_act);
+
+
+
+
 
 
 }
