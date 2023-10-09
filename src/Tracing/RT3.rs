@@ -20,6 +20,11 @@ use crate::Generate::Fixed::tileDown;
 
 use crate::Intersect::Sphere::line_sphere_intersect_batchV2;
 
+use crate::Generate::Fixed::rays_from_neuronsA_to_neuronsB;
+
+
+
+
 
 const TWO_F64: f64 = 2.0;
 const ONE_F64: f64 = 1.0;
@@ -314,7 +319,7 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<Aggreg
 		tiled_hidden_idx = hidden_idx.clone();
 		drop(hidden_idx);
 
-		tileDown_i32(
+		tileDown(
 			input_idx_size,
 		
 			&mut tiled_hidden_idx
