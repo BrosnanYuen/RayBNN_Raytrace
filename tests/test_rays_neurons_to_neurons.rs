@@ -21,6 +21,29 @@ fn test_rays_neurons_to_neurons() {
 	let ZERO = arrayfire::constant::<f64>(0.0, single_dims);
 
 
+
+
+    let mut input_pos_cpu:Vec<f64> = vec![ 0.1, -1.7, 0.3,     -0.1, 0.4, -0.7,          -0.3, -4.2, -3.9,       7.5, -0.7, -2.1,      -0.3,-0.6,0.9,            0.1,-0.7,0.5,         0.2, -0.7, -5.2  ];
+    let mut input_pos = arrayfire::Array::new(&input_pos_cpu, arrayfire::Dim4::new(&[3, 7, 1, 1]));
+    
+    input_pos = arrayfire::transpose(&input_pos, false);
+    
+
+
+
+
+    let mut hidden_pos_cpu:Vec<f64> = vec![ 2.6, -2.4, 4.3,     3.1, 1.4, -2.7,           -4.3, 1.2, -1.9,        2.5, 4.7, -1.1,       2.3,0.6,-0.9,      ];
+    let mut hidden_pos = arrayfire::Array::new(&hidden_pos_cpu, arrayfire::Dim4::new(&[3, 5, 1, 1]));
+    
+    hidden_pos = arrayfire::transpose(&hidden_pos, false);
+    
+
+
+
+
+
+
+
     //Generate rays starting from input neurons
     let mut start_line = ZERO.clone();
     let mut dir_line = ZERO.clone();
