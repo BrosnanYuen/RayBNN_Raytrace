@@ -181,7 +181,7 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 	//Get input and hidden positions
 
-	let mut hidden_pos =  arrayfire::constant::<f64>(0.0,single_dims);
+	let mut hidden_pos =  ZERO.clone();
 
  
 
@@ -190,8 +190,8 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 
 
-	let mut start_line = arrayfire::constant::<f64>(0.0,single_dims);
-    let mut dir_line = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut start_line = ZERO.clone();
+    let mut dir_line = ZERO.clone();
 
 
 
@@ -227,11 +227,11 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 	let mut select_input_idx: u64 = 0;
 
 
-	let mut input_pos = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut input_pos = ZERO.clone();
 	let mut input_idx  = arrayfire::constant::<i32>(0,single_dims);
 
 
-	let mut glia_pos = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut glia_pos = ZERO.clone();
 	let mut glia_idx  = arrayfire::constant::<i32>(0,single_dims);
 
 
@@ -295,8 +295,8 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 
 		//Generate rays starting from input neurons
-		start_line = arrayfire::constant::<f64>(0.0,single_dims);
-		dir_line = arrayfire::constant::<f64>(0.0,single_dims);
+		start_line = ZERO.clone();
+		dir_line = ZERO.clone();
 
 		
 
