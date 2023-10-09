@@ -193,9 +193,9 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<Aggreg
 
  
 
-	let mut circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1])).cast::<Z>();
+	//let mut circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1])).cast::<Z>();
 
-
+	let mut circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
 
 
 	let mut start_line = ZERO.clone();
@@ -363,7 +363,9 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<Aggreg
 		raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
 	
 		
-		circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1])).cast::<Z>();
+		//circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1])).cast::<Z>();
+
+		circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
 
 		
 		if ray_neuron_intersect && (hidden_size > 1)
@@ -422,8 +424,11 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<Aggreg
 
 		raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
 	
-		circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1])).cast::<Z>();
+		//circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1])).cast::<Z>();
 		
+		circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1]));
+
+
 		if ray_glia_intersect && (glia_pos.dims()[0] > 1)
 		{
 			line_sphere_intersect_batchV2(
