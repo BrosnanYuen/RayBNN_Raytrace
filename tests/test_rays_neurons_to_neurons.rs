@@ -95,6 +95,17 @@ fn test_rays_neurons_to_neurons() {
         &mut tiled_input_idx,
         &mut tiled_hidden_idx,
     );
+
+
+
+    assert_eq!(start_line.dims()[0], 35 );
+    assert_eq!(start_line.dims()[0], dir_line.dims()[0] );
+    assert_eq!(start_line.dims()[0], tiled_input_idx.dims()[0] );
+    assert_eq!(start_line.dims()[0], tiled_hidden_idx.dims()[0] );
+
+
+    assert_eq!(start_line.dims()[1], 3 );
+    assert_eq!(dir_line.dims()[1], 3 );
     
     arrayfire::print_gen("start_line".to_string(), &start_line, Some(6));
 
