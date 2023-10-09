@@ -20,5 +20,40 @@ fn test_rays_neurons_to_neurons() {
 
 
 
+    //Generate rays starting from input neurons
+    let mut start_line = ZERO.clone();
+    let mut dir_line = ZERO.clone();
+
+    
+
+    let tile_dims = arrayfire::Dim4::new(&[hidden_size,1,1,1]);
+
+    let mut tiled_input_idx =  arrayfire::tile(&input_idx, tile_dims);
+    
+    let mut tiled_hidden_idx = hidden_idx.clone();
+
+    tileDown(
+        input_idx_size,
+    
+        &mut tiled_hidden_idx
+    );
+
+
+
+    rays_from_neuronsA_to_neuronsB(
+        con_rad,
+
+        &input_pos,
+        &hidden_pos,
+    
+        &mut start_line,
+        &mut dir_line,
+
+        &mut tiled_input_idx,
+        &mut tiled_hidden_idx,
+    );
+    
+
+
 
 }
