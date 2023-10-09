@@ -14,6 +14,12 @@ use rand::distributions::{Distribution, Uniform};
 
 use RayBNN_Sparse::Util::Convert::get_global_weight_idx;
 
+use crate::Generate::Fixed::filter_rays;
+
+use crate::Generate::Fixed::tileDown;
+
+
+
 
 const TWO_F64: f64 = 2.0;
 const ONE_F64: f64 = 1.0;
@@ -45,7 +51,7 @@ WColIdx:        Column vector in the COO sparse matrix
 
 */
 
-pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
+pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
 	raytrace_option_int: &HashMap<String, u64>,
 
 
