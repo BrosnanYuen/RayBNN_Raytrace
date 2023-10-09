@@ -81,6 +81,8 @@ fn test_rays_neurons_to_neurons() {
         &mut tiled_hidden_idx
     );
 
+    let con_rad = 17.0;
+
     RayBNN_Raytrace::Generate::Fixed::rays_from_neuronsA_to_neuronsB(
         con_rad,
 
@@ -94,7 +96,7 @@ fn test_rays_neurons_to_neurons() {
         &mut tiled_hidden_idx,
     );
     
-
+    arrayfire::print_gen("start_line".to_string(), &start_line, Some(6));
 
 
 }
