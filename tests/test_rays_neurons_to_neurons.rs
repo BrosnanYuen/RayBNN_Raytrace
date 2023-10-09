@@ -31,6 +31,17 @@ fn test_rays_neurons_to_neurons() {
 
 
 
+    let mut input_idx_cpu:Vec<i32> = vec![1, 2, 5,   7, 8, 9, 10  ];
+    let mut input_idx = arrayfire::Array::new(&input_idx_cpu, arrayfire::Dim4::new(&[7, 1, 1, 1]));
+    
+
+
+
+
+
+
+
+
 
     let mut hidden_pos_cpu:Vec<f64> = vec![ 2.6, -2.4, 4.3,     3.1, 1.4, -2.7,           -4.3, 1.2, -1.9,        2.5, 4.7, -1.1,       2.3,0.6,-0.9,      ];
     let mut hidden_pos = arrayfire::Array::new(&hidden_pos_cpu, arrayfire::Dim4::new(&[3, 5, 1, 1]));
@@ -38,9 +49,17 @@ fn test_rays_neurons_to_neurons() {
     hidden_pos = arrayfire::transpose(&hidden_pos, false);
     
 
+    let mut hidden_idx_cpu:Vec<i32> = vec![ 12, 15, 17, 18, 19  ];
+    let mut hidden_idx = arrayfire::Array::new(&hidden_idx_cpu, arrayfire::Dim4::new(&[7, 1, 1, 1]));
+    
 
 
 
+
+
+
+    let mut hidden_size = hidden_pos.dims()[0];
+    let input_idx_size = input_idx.dims()[0];
 
 
 
