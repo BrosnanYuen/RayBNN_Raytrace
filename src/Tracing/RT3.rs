@@ -228,8 +228,7 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 
 
 	let mut same_counter: u64 = 0;
-	let mut pivot_pos = vec![-sphere_rad*0.7f64; space_dims as usize];
-	let pivot_rad = 4.0f64*con_rad;
+	
 	let mut nonoverlapping = true;
 
 	for vv in 0..max_rounds
@@ -238,30 +237,7 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating  >(
 		let mut target_input = arrayfire::row(input_pos_total, select_input_idx as i64);
 		
 
-		if ((vv % 10) == 0) && nonoverlapping
-		{
-
-			pivot_pos[0] = pivot_pos[0] + pivot_rad;
-
-			for idx in 0..space_dims
-			{
-				if pivot_pos[idx as usize] > sphere_rad*0.7f64
-				{
-					if idx == (space_dims-1)
-					{
-						nonoverlapping = false;
-						break;
-					}
-
-					pivot_pos[idx as usize] = -sphere_rad*0.7f64;
-					pivot_pos[(idx+1) as usize] = pivot_pos[(idx+1) as usize] + pivot_rad;
-				}
-			}
-
-			target_input = arrayfire::Array::new(&pivot_pos, arrayfire::Dim4::new(&[1, 3, 1, 1]));
-
-		}
-
+		
 
 
 		input_pos = input_pos_total.clone();
