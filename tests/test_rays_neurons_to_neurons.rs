@@ -17,7 +17,8 @@ fn test_rays_neurons_to_neurons() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
-
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+	let ZERO = arrayfire::constant::<f64>(0.0, single_dims);
 
 
     //Generate rays starting from input neurons
@@ -32,15 +33,13 @@ fn test_rays_neurons_to_neurons() {
     
     let mut tiled_hidden_idx = hidden_idx.clone();
 
-    tileDown(
+    RayBNN_Raytrace::Generate::Fixed::tileDown(
         input_idx_size,
     
         &mut tiled_hidden_idx
     );
 
-
-
-    rays_from_neuronsA_to_neuronsB(
+    RayBNN_Raytrace::Generate::Fixed::rays_from_neuronsA_to_neuronsB(
         con_rad,
 
         &input_pos,
