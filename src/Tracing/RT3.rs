@@ -57,9 +57,6 @@ WColIdx:        Column vector in the COO sparse matrix
 */
 
 pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  >(
-	raytrace_option_int: &HashMap<String, u64>,
-
-
     modeldata_float: &HashMap<String, f64>,
     modeldata_int: &HashMap<String, u64>,
 
@@ -102,10 +99,10 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<Aggreg
 
 
 
-	let input_connection_num: u64 = raytrace_option_int["input_connection_num"].clone();
-	let max_rounds: u64 = raytrace_option_int["max_rounds"].clone();
-	let ray_glia_intersect: bool = raytrace_option_int["ray_glia_intersect"].clone() == 1;
-	let ray_neuron_intersect: bool = raytrace_option_int["ray_neuron_intersect"].clone() == 1;
+	let input_connection_num: u64 = modeldata_int["ray_input_connection_num"].clone();
+	let max_rounds: u64 = modeldata_int["ray_max_rounds"].clone();
+	let ray_glia_intersect: bool = modeldata_int["ray_glia_intersect"].clone() == 1;
+	let ray_neuron_intersect: bool = modeldata_int["ray_neuron_intersect"].clone() == 1;
 
 
 	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
