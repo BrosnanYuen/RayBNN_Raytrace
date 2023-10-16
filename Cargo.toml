@@ -1,6 +1,6 @@
 [package]
 name = "RayBNN_Raytrace"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Brosnan Yuen <brosnanyuen@gmail.com>"]
 edition = "2021"
 description = "Ray tracing library using GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI"
@@ -23,7 +23,7 @@ rand = "0.8.5"
 nohash-hasher = "0.2.0"
 RayBNN_DataLoader = "0.1.3"
 RayBNN_Sparse = "0.1.2"
-
+RayBNN_Cell = "0.1.1"
 
 [dev-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -35,7 +35,7 @@ rand = "0.8.5"
 nohash-hasher = "0.2.0"
 RayBNN_DataLoader = "0.1.3"
 RayBNN_Sparse = "0.1.2"
-
+RayBNN_Cell = "0.1.1"
 
 [build-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -47,7 +47,7 @@ rand = "0.8.5"
 nohash-hasher = "0.2.0"
 RayBNN_DataLoader = "0.1.3"
 RayBNN_Sparse = "0.1.2"
-
+RayBNN_Cell = "0.1.1"
 
 [lib]
 name = "RayBNN_Raytrace"
