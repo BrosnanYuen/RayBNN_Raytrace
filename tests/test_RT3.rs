@@ -106,15 +106,15 @@ fn test_RT3() {
     
         &glia_pos_total,
     
-        input_pos_total: &arrayfire::Array<Z>,
-        input_idx_total: &arrayfire::Array<i32>,
+        &input_pos_total,
+        &input_idx_total,
     
-        hidden_pos_total: &arrayfire::Array<Z>,
-        hidden_idx_total: &arrayfire::Array<i32>,
+        &hidden_pos_total,
+        &hidden_idx_total,
     
         
-        WRowIdxCOO: &mut arrayfire::Array<i32>,
-        WColIdx: &mut arrayfire::Array<i32>
+        &mut WRowIdxCOO,
+        &mut WColIdx
     );
 
 
