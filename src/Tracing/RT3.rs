@@ -76,25 +76,13 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<Aggreg
 
 	let neuron_size: u64 = modeldata_int["neuron_size"].clone();
     let input_size: u64 = input_pos_total.dims()[0];
-	let output_size: u64 = modeldata_int["output_size"].clone();
-	let proc_num: u64 = modeldata_int["proc_num"].clone();
-	let active_size: u64 = modeldata_int["active_size"].clone();
-	let space_dims: u64 = modeldata_int["space_dims"].clone();
-	let step_num: u64 = modeldata_int["step_num"].clone();
 
 
 
 
 
-
-
-	let time_step: f64 = modeldata_float["time_step"].clone();
-	let nratio: f64 = modeldata_float["nratio"].clone();
-	let neuron_std: f64 = modeldata_float["neuron_std"].clone();
-	let sphere_rad: f64 = modeldata_float["sphere_rad"].clone();
 	let neuron_rad: f64 = modeldata_float["neuron_rad"].clone();
 	let con_rad: f64 = modeldata_float["con_rad"].clone();
-	let init_prob: f64 = modeldata_float["init_prob"].clone();
 
 
 
@@ -242,7 +230,7 @@ pub fn RT3_distance_limited_directly_connected<Z: arrayfire::RealFloating<Aggreg
 
 	let mut same_counter: u64 = 0;
 	
-	let mut nonoverlapping = true;
+	
 
 	for vv in 0..max_rounds
 	{
