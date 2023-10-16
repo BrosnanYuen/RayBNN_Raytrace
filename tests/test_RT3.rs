@@ -52,6 +52,10 @@ fn test_RT3() {
     modeldata_int.insert("active_size".to_string(), active_size.clone());
     modeldata_int.insert("space_dims".to_string(), space_dims.clone());
     modeldata_int.insert("batch_size".to_string(), batch_size.clone());
+    modeldata_int.insert("ray_input_connection_num".to_string(), 500000);
+    modeldata_int.insert("ray_max_rounds".to_string(), 1000);
+    modeldata_int.insert("ray_glia_intersect".to_string(), 1);
+    modeldata_int.insert("ray_neuron_intersect".to_string(), 1);
 
 
 
