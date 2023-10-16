@@ -109,7 +109,9 @@ fn test_RT3() {
 
     let mut input_idx_total = arrayfire::iota::<i32>(gen_dims,rep_dims);
     let hidden_idx_total = input_idx_total.clone();
-
+    let input_pos_total = neuron_pos.clone();
+    let hidden_pos_total = neuron_pos;
+    
     RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
         &modeldata_float,
         &modeldata_int,
