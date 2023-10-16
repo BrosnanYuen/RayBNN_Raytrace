@@ -99,6 +99,25 @@ fn test_RT3() {
         &mut neuron_pos
     );
 
+    
+    RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
+        &modeldata_float,
+        &modeldata_int,
+    
+        &glia_pos_total,
+    
+        input_pos_total: &arrayfire::Array<Z>,
+        input_idx_total: &arrayfire::Array<i32>,
+    
+        hidden_pos_total: &arrayfire::Array<Z>,
+        hidden_idx_total: &arrayfire::Array<i32>,
+    
+        
+        WRowIdxCOO: &mut arrayfire::Array<i32>,
+        WColIdx: &mut arrayfire::Array<i32>
+    );
+
+
 
 
 
