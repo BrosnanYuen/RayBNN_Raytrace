@@ -25,7 +25,7 @@ num-traits = "0.2.16"
 half = { version = "2.3.1" , features = ["num-traits"] }
 RayBNN_DataLoader = "0.1.3"
 RayBNN_Sparse = "0.1.2"
-RayBNN_Cell = "0.1.1"
+RayBNN_Cell = "0.1.2"
 RayBNN_Raytrace = "0.1.5"
 ```
 

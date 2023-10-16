@@ -86,7 +86,6 @@ fn test_RT3() {
 
     let idx = RayBNN_Cell::Hidden::Sphere::check_cell_collision_minibatch(
         &modeldata_float, 
-        &modeldata_int, 
         &cell_pos
     );
 
