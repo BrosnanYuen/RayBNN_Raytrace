@@ -62,6 +62,7 @@ fn test_RT3() {
     modeldata_float.insert("nratio".to_string(), nratio.clone());
     modeldata_float.insert("neuron_std".to_string(), neuron_std.clone());
     modeldata_float.insert("sphere_rad".to_string(), sphere_rad.clone());
+    modeldata_float.insert("con_rad".to_string(), 40.0*neuron_rad.clone());
 
 
 
@@ -111,7 +112,7 @@ fn test_RT3() {
     let hidden_idx_total = input_idx_total.clone();
     let input_pos_total = neuron_pos.clone();
     let hidden_pos_total = neuron_pos;
-    
+
     RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
         &modeldata_float,
         &modeldata_int,
