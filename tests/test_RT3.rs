@@ -99,12 +99,16 @@ fn test_RT3() {
         &mut neuron_pos
     );
 
+    let temp_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let mut WRowIdxCOO = arrayfire::constant::<i32>(0,temp_dims);
+    let mut WColIdx = arrayfire::constant::<i32>(0,temp_dims);
+
     
     RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
         &modeldata_float,
         &modeldata_int,
     
-        &glia_pos_total,
+        &glia_pos,
     
         &input_pos_total,
         &input_idx_total,
