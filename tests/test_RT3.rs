@@ -103,7 +103,13 @@ fn test_RT3() {
     let mut WRowIdxCOO = arrayfire::constant::<i32>(0,temp_dims);
     let mut WColIdx = arrayfire::constant::<i32>(0,temp_dims);
 
-    
+
+	let gen_dims = arrayfire::Dim4::new(&[cell_pos.dims()[0],1,1,1]);
+	let rep_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+
+    let mut input_idx_total = arrayfire::iota::<i32>(gen_dims,rep_dims);
+    let hidden_idx_total = input_idx_total.clone();
+
     RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
         &modeldata_float,
         &modeldata_int,
