@@ -42,6 +42,8 @@ fn test_RT3() {
     let sphere_rad =  30.0;
 
 
+    let ray_input_connection_num = 1000000;
+
     let mut modeldata_float: HashMap<String, f64> = HashMap::new();
     let mut modeldata_int: HashMap<String, u64>  = HashMap::new();
 
@@ -52,7 +54,7 @@ fn test_RT3() {
     modeldata_int.insert("active_size".to_string(), active_size.clone());
     modeldata_int.insert("space_dims".to_string(), space_dims.clone());
     modeldata_int.insert("batch_size".to_string(), batch_size.clone());
-    modeldata_int.insert("ray_input_connection_num".to_string(), 1000000);
+    modeldata_int.insert("ray_input_connection_num".to_string(), ray_input_connection_num);
     modeldata_int.insert("ray_max_rounds".to_string(), 1000);
     modeldata_int.insert("ray_glia_intersect".to_string(), 1);
     modeldata_int.insert("ray_neuron_intersect".to_string(), 1);
@@ -133,7 +135,10 @@ fn test_RT3() {
         &mut WColIdx
     );
 
+    println!("WRowIdxCOO {}", WRowIdxCOO.dims()[0]);
 
+    assert_eq!(WRowIdxCOO.dims()[0],WColIdx.dims()[0]  );
+    assert!(WRowIdxCOO.dims()[0] >=  ray_input_connection_num );
 
 
 
