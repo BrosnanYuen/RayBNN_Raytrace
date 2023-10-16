@@ -4,19 +4,100 @@
 use arrayfire;
 use RayBNN_DataLoader;
 
+use std::collections::HashMap;
+
+use RayBNN_Cell;
+
 const BACK_END: arrayfire::Backend = arrayfire::Backend::CUDA;
 const DEVICE: i32 = 0;
 
 
 use rayon::prelude::*;
 
-
+const TWO_F64: f64 = 2.0;
 
 #[test]
-fn test_generate() {
+fn test_RT3() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
+
+
+    let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
+    let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<f32>();
+
+
+	let neuron_size: u64 = 51000;
+	let input_size: u64 = 4;
+	let output_size: u64 = 3;
+	let proc_num: u64 = 3;
+	let active_size: u64 = 500000;
+	let space_dims: u64 = 3;
+	let mut batch_size: u64 = 105;
+
+	let neuron_rad = 0.1;
+    let time_step = 0.3;
+    let nratio =  0.5;
+    let neuron_std =  0.3;
+    let sphere_rad =  30.0;
+
+
+    let mut modeldata_float: HashMap<String, f64> = HashMap::new();
+    let mut modeldata_int: HashMap<String, u64>  = HashMap::new();
+
+    modeldata_int.insert("neuron_size".to_string(), neuron_size.clone());
+    modeldata_int.insert("input_size".to_string(), input_size.clone());
+    modeldata_int.insert("output_size".to_string(), output_size.clone());
+    modeldata_int.insert("proc_num".to_string(), proc_num.clone());
+    modeldata_int.insert("active_size".to_string(), active_size.clone());
+    modeldata_int.insert("space_dims".to_string(), space_dims.clone());
+    modeldata_int.insert("batch_size".to_string(), batch_size.clone());
+
+
+
+
+
+    modeldata_float.insert("neuron_rad".to_string(), neuron_rad.clone());
+    modeldata_float.insert("time_step".to_string(), time_step.clone());
+    modeldata_float.insert("nratio".to_string(), nratio.clone());
+    modeldata_float.insert("neuron_std".to_string(), neuron_std.clone());
+    modeldata_float.insert("sphere_rad".to_string(), sphere_rad.clone());
+
+
+
+	let temp_dims = arrayfire::Dim4::new(&[4,1,1,1]);
+
+	let mut glia_pos = arrayfire::constant::<f32>(0.0,temp_dims);
+	let mut neuron_pos = arrayfire::constant::<f32>(0.0,temp_dims);
+
+
+    let mut cell_pos: arrayfire::Array<f32>  = RayBNN_Cell::Hidden::Sphere::generate_uniform_sphere_posiiton(&modeldata_float, &modeldata_int);
+
+
+    println!("cell_pos {}", cell_pos.dims()[0]);
+
+    assert_eq!(cell_pos.dims()[0], active_size*2);
+    assert_eq!(cell_pos.dims()[1], space_dims);
+
+    let idx = RayBNN_Cell::Hidden::Sphere::check_cell_collision_minibatch(
+        &modeldata_float, 
+        &modeldata_int, 
+        &cell_pos
+    );
+
+    let idx = arrayfire::locate(&idx);
+
+	cell_pos = arrayfire::lookup(&cell_pos, &idx, 0);
+
+
+    RayBNN_Cell::Hidden::Sphere::split_into_glia_neuron(
+        &modeldata_float,
+    
+        &cell_pos,
+    
+        &mut glia_pos,
+        &mut neuron_pos
+    );
 
 
 
