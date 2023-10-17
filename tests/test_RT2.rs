@@ -24,17 +24,17 @@ fn test_RT2() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
-    arrayfire::set_seed(1233);
+    arrayfire::set_seed(1232);
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<f32>();
 
 
-	let neuron_size: u64 = 51000;
+	let neuron_size: u64 = 5100;
 	let input_size: u64 = 4;
 	let output_size: u64 = 3;
 	let proc_num: u64 = 3;
-	let active_size: u64 = 500000;
+	let active_size: u64 = 5000;
 	let space_dims: u64 = 3;
 	let mut batch_size: u64 = 105;
 
@@ -42,10 +42,10 @@ fn test_RT2() {
     let time_step = 0.3;
     let nratio =  0.5;
     let neuron_std =  0.3;
-    let sphere_rad =  30.0;
+    let sphere_rad =  4.0;
 
 
-    let ray_input_connection_num = 1000000;
+    let ray_input_connection_num = 100000;
 
     let mut modeldata_float: HashMap<String, f64> = HashMap::new();
     let mut modeldata_int: HashMap<String, u64>  = HashMap::new();
@@ -121,7 +121,7 @@ fn test_RT2() {
     let input_pos_total = neuron_pos.clone();
     let hidden_pos_total = neuron_pos.clone();
 
-    RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
+    RayBNN_Raytrace::Tracing::RT2::RT2_directly_connected(
         &modeldata_float,
         &modeldata_int,
     
