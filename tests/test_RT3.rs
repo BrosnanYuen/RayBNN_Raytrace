@@ -113,13 +113,13 @@ fn test_RT3() {
     let mut WColIdx = arrayfire::constant::<i32>(0,temp_dims);
 
 
-	let gen_dims = arrayfire::Dim4::new(&[cell_pos.dims()[0],1,1,1]);
+	let gen_dims = arrayfire::Dim4::new(&[neuron_pos.dims()[0],1,1,1]);
 	let rep_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 
     let mut input_idx_total = arrayfire::iota::<i32>(gen_dims,rep_dims);
     let hidden_idx_total = input_idx_total.clone();
     let input_pos_total = neuron_pos.clone();
-    let hidden_pos_total = neuron_pos;
+    let hidden_pos_total = neuron_pos.clone();
 
     RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
         &modeldata_float,
@@ -152,5 +152,11 @@ fn test_RT3() {
     let unique = arrayfire::set_unique(&gidx1, false);
     assert_eq!(gidx1.dims()[0],unique.dims()[0]);
 
+
+    let (max_val,_) = arrayfire::max_all(&WRowIdxCOO);
+    assert!(max_val <= (neuron_pos.dims()[0] as i32));
+
+    let (max_val,_) = arrayfire::max_all(&WColIdx);
+    assert!(max_val <= (neuron_pos.dims()[0] as i32));
 
 }
