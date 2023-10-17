@@ -232,8 +232,6 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 	
 	
 
-	for vv in 0..max_rounds
-	{
 		select_input_idx = rand_vec.choose(&mut rng).unwrap().clone();
 		let mut target_input = arrayfire::row(input_pos_total, select_input_idx as i64);
 		
@@ -246,10 +244,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 
 
 
-		if input_idx.dims()[0] == 0
-		{
-			continue;
-		}
+
 
 		input_idx_size = input_idx.dims()[0];
 
@@ -262,10 +257,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 		hidden_size = hidden_idx.dims()[0];
 		hidden_size_u32 = hidden_idx.dims()[0] as u32;
 
-		if hidden_size == 0
-		{
-			continue;
-		}
+
 
 		
 
@@ -324,10 +316,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 		//println!("tiled_hidden_idx.dims()[0] {}",tiled_hidden_idx.dims()[0]);
 		//println!("tiled_hidden_idx.dims()[1] {}",tiled_hidden_idx.dims()[1]);
 
-		if start_line.dims()[0] == 0
-		{
-			continue;
-		}
+
 
 
 	
@@ -358,10 +347,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 		}
 		drop(hidden_pos);
 
-		if tiled_input_idx.dims()[0] == 0
-		{
-			continue;
-		}
+
 
 		//println!("a1");
 		//println!("intersect.dims()[0] {}",intersect.dims()[0]);
@@ -414,10 +400,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 
 		
 
-		if tiled_input_idx.dims()[0] == 0
-		{
-			continue;
-		}
+
 
 		
 
@@ -461,7 +444,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 
 
 
-	}
+	
 
 
 	drop(gidx1_cpu);
