@@ -8,6 +8,9 @@ use std::collections::HashMap;
 
 use RayBNN_Cell;
 
+use RayBNN_Sparse::Util::Convert::get_global_weight_idx;
+
+
 const BACK_END: arrayfire::Backend = arrayfire::Backend::CUDA;
 const DEVICE: i32 = 0;
 
@@ -21,7 +24,7 @@ fn test_RT3() {
     arrayfire::set_backend(BACK_END);
     arrayfire::set_device(DEVICE);
 
-
+    arrayfire::set_seed(1233);
 
     let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
     let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<f32>();
@@ -140,6 +143,14 @@ fn test_RT3() {
     assert_eq!(WRowIdxCOO.dims()[0],WColIdx.dims()[0]  );
     assert!(WRowIdxCOO.dims()[0] >=  ray_input_connection_num );
 
+    let gidx1 = get_global_weight_idx(
+        neuron_size,
+        &WRowIdxCOO,
+        &WColIdx,
+    );
+
+    let unique = arrayfire::set_unique(&gidx1, false);
+    assert_eq!(gidx1.dims()[0],unique.dims()[0]);
 
 
 }
