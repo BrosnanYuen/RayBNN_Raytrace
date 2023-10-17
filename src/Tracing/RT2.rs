@@ -14,7 +14,7 @@ use rand::distributions::{Distribution, Uniform};
 
 use RayBNN_Sparse::Util::Convert::get_global_weight_idx;
 
-use crate::Generate::Fixed::filter_rays;
+
 
 use crate::Generate::Fixed::tileDown;
 
@@ -244,14 +244,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 		input_pos = input_pos_total.clone();
 		input_idx  = input_idx_total.clone();
 
-		filter_rays(
-			2.0f64*con_rad,
-		
-			&target_input,
-		
-			&mut input_pos,
-			&mut input_idx,
-		);
+
 
 		if input_idx.dims()[0] == 0
 		{
@@ -264,14 +257,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 		hidden_pos = hidden_pos_total.clone();
 		hidden_idx  = hidden_idx_total.clone();
 
-		filter_rays(
-			con_rad,
-		
-			&target_input,
-		
-			&mut hidden_pos,
-			&mut hidden_idx,
-		);
+
 
 		hidden_size = hidden_idx.dims()[0];
 		hidden_size_u32 = hidden_idx.dims()[0] as u32;
@@ -397,14 +383,7 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 		glia_pos = glia_pos_total.clone();
 		glia_idx  = arrayfire::constant::<i32>(0,glia_pos.dims());
 
-		filter_rays(
-			con_rad,
-		
-			&target_input,
-		
-			&mut glia_pos,
-			&mut glia_idx,
-		);
+
 		drop(glia_idx);
 
 		raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
