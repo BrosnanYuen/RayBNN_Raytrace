@@ -232,215 +232,215 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 	
 	
 
-		select_input_idx = rand_vec.choose(&mut rng).unwrap().clone();
-		let mut target_input = arrayfire::row(input_pos_total, select_input_idx as i64);
-		
+	select_input_idx = rand_vec.choose(&mut rng).unwrap().clone();
+	let mut target_input = arrayfire::row(input_pos_total, select_input_idx as i64);
+	
 
-		
-
-
-		input_pos = input_pos_total.clone();
-		input_idx  = input_idx_total.clone();
+	
 
 
+	input_pos = input_pos_total.clone();
+	input_idx  = input_idx_total.clone();
 
 
 
-		input_idx_size = input_idx.dims()[0];
 
 
-		hidden_pos = hidden_pos_total.clone();
-		hidden_idx  = hidden_idx_total.clone();
+	input_idx_size = input_idx.dims()[0];
 
 
-
-		hidden_size = hidden_idx.dims()[0];
-		hidden_size_u32 = hidden_idx.dims()[0] as u32;
+	hidden_pos = hidden_pos_total.clone();
+	hidden_idx  = hidden_idx_total.clone();
 
 
 
-		
+	hidden_size = hidden_idx.dims()[0];
+	hidden_size_u32 = hidden_idx.dims()[0] as u32;
+
 
 
 	
 
 
-		//Generate rays starting from input neurons
-		start_line = ZERO.clone();
-		dir_line = ZERO.clone();
 
+
+
+	//Generate rays starting from input neurons
+	start_line = ZERO.clone();
+	dir_line = ZERO.clone();
+
+	
+
+	let tile_dims = arrayfire::Dim4::new(&[hidden_size,1,1,1]);
+
+	tiled_input_idx =  arrayfire::tile(&input_idx, tile_dims);
+	drop(input_idx);
+	
+	tiled_hidden_idx = hidden_idx.clone();
+	drop(hidden_idx);
+
+	tileDown(
+		input_idx_size,
+	
+		&mut tiled_hidden_idx
+	);
+
+	//println!("z1");
+	//println!("input_pos.dims()[0] {}",input_pos.dims()[0]);
+	//println!("input_pos.dims()[1] {}",input_pos.dims()[1]);
+	//println!("hidden_pos.dims()[0] {}",hidden_pos.dims()[0]);
+	//println!("hidden_pos.dims()[1] {}",hidden_pos.dims()[1]);
+	//println!("con_rad {}", con_rad);
+
+	rays_from_neuronsA_to_neuronsB(
+		con_rad,
+
+		&input_pos,
+		&hidden_pos,
+	
+		&mut start_line,
+		&mut dir_line,
+
+		&mut tiled_input_idx,
+		&mut tiled_hidden_idx,
+	);
+	drop(input_pos);
+
+	//println!("z1");
+	//println!("start_line.dims()[0] {}",start_line.dims()[0]);
+	//println!("start_line.dims()[1] {}",start_line.dims()[1]);
+	//println!("dir_line.dims()[0] {}",dir_line.dims()[0]);
+	//println!("dir_line.dims()[1] {}",dir_line.dims()[1]);
+	//println!("tiled_input_idx.dims()[0] {}",tiled_input_idx.dims()[0]);
+	//println!("tiled_input_idx.dims()[1] {}",tiled_input_idx.dims()[1]);
+	//println!("tiled_hidden_idx.dims()[0] {}",tiled_hidden_idx.dims()[0]);
+	//println!("tiled_hidden_idx.dims()[1] {}",tiled_hidden_idx.dims()[1]);
+
+
+
+
+
+	raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
+
+	
+	//circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1])).cast::<Z>();
+
+	circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
+
+	
+	if ray_neuron_intersect && (hidden_size > 1)
+	{
+		line_sphere_intersect_batchV2(
+			raytrace_batch_size,
 		
-
-		let tile_dims = arrayfire::Dim4::new(&[hidden_size,1,1,1]);
-
-		tiled_input_idx =  arrayfire::tile(&input_idx, tile_dims);
-		drop(input_idx);
+			2,
 		
-		tiled_hidden_idx = hidden_idx.clone();
-		drop(hidden_idx);
-
-		tileDown(
-			input_idx_size,
-		
-			&mut tiled_hidden_idx
-		);
-
-		//println!("z1");
-		//println!("input_pos.dims()[0] {}",input_pos.dims()[0]);
-		//println!("input_pos.dims()[1] {}",input_pos.dims()[1]);
-		//println!("hidden_pos.dims()[0] {}",hidden_pos.dims()[0]);
-		//println!("hidden_pos.dims()[1] {}",hidden_pos.dims()[1]);
-		//println!("con_rad {}", con_rad);
-
-		rays_from_neuronsA_to_neuronsB(
-			con_rad,
-
-			&input_pos,
 			&hidden_pos,
+			&circle_radius,
 		
 			&mut start_line,
 			&mut dir_line,
-
+		
 			&mut tiled_input_idx,
 			&mut tiled_hidden_idx,
 		);
-		drop(input_pos);
-
-		//println!("z1");
-		//println!("start_line.dims()[0] {}",start_line.dims()[0]);
-		//println!("start_line.dims()[1] {}",start_line.dims()[1]);
-		//println!("dir_line.dims()[0] {}",dir_line.dims()[0]);
-		//println!("dir_line.dims()[1] {}",dir_line.dims()[1]);
-		//println!("tiled_input_idx.dims()[0] {}",tiled_input_idx.dims()[0]);
-		//println!("tiled_input_idx.dims()[1] {}",tiled_input_idx.dims()[1]);
-		//println!("tiled_hidden_idx.dims()[0] {}",tiled_hidden_idx.dims()[0]);
-		//println!("tiled_hidden_idx.dims()[1] {}",tiled_hidden_idx.dims()[1]);
+	}
+	drop(hidden_pos);
 
 
 
+	//println!("a1");
+	//println!("intersect.dims()[0] {}",intersect.dims()[0]);
+	//println!("intersect.dims()[1] {}",intersect.dims()[1]);
+	//println!("intersect.dims()[2] {}",intersect.dims()[2]);
 
 	
-		raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
+	//println!("a2");
+	//println!("intersect.dims()[0] {}",intersect.dims()[0]);
+	//println!("intersect.dims()[1] {}",intersect.dims()[1]);
+	//println!("intersect.dims()[2] {}",intersect.dims()[2]);
+
 	
-		
-		//circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1])).cast::<Z>();
-
-		circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[hidden_pos.dims()[0],1,1,1]));
-
-		
-		if ray_neuron_intersect && (hidden_size > 1)
-		{
-			line_sphere_intersect_batchV2(
-				raytrace_batch_size,
-			
-				2,
-			
-				&hidden_pos,
-				&circle_radius,
-			
-				&mut start_line,
-				&mut dir_line,
-			
-				&mut tiled_input_idx,
-				&mut tiled_hidden_idx,
-			);
-		}
-		drop(hidden_pos);
-
-
-
-		//println!("a1");
-		//println!("intersect.dims()[0] {}",intersect.dims()[0]);
-		//println!("intersect.dims()[1] {}",intersect.dims()[1]);
-		//println!("intersect.dims()[2] {}",intersect.dims()[2]);
-
-		
-		//println!("a2");
-		//println!("intersect.dims()[0] {}",intersect.dims()[0]);
-		//println!("intersect.dims()[1] {}",intersect.dims()[1]);
-		//println!("intersect.dims()[2] {}",intersect.dims()[2]);
-
-		
-		//println!("input_size {}",input_size);
+	//println!("input_size {}",input_size);
 
 
 
 
-		glia_pos = glia_pos_total.clone();
-		glia_idx  = arrayfire::constant::<i32>(0,glia_pos.dims());
+	glia_pos = glia_pos_total.clone();
+	glia_idx  = arrayfire::constant::<i32>(0,glia_pos.dims());
 
 
-		drop(glia_idx);
+	drop(glia_idx);
 
-		raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
+	raytrace_batch_size = 1 + ((RAYTRACE_LIMIT/start_line.dims()[0]) as u64);
+
+	//circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1])).cast::<Z>();
 	
-		//circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1])).cast::<Z>();
+	circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1]));
+
+
+	if ray_glia_intersect && (glia_pos.dims()[0] > 1)
+	{
+		line_sphere_intersect_batchV2(
+			raytrace_batch_size,
 		
-		circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[glia_pos.dims()[0],1,1,1]));
-
-
-		if ray_glia_intersect && (glia_pos.dims()[0] > 1)
-		{
-			line_sphere_intersect_batchV2(
-				raytrace_batch_size,
-			
-				0,
-			
-				&glia_pos,
-				&circle_radius,
-			
-				&mut start_line,
-				&mut dir_line,
-			
-				&mut tiled_input_idx,
-				&mut tiled_hidden_idx,
-			);
-		}
-		drop(glia_pos);
-
+			0,
 		
-
-
-
+			&glia_pos,
+			&circle_radius,
 		
-
-
-		//Compute global index
-		gidx1 = get_global_weight_idx(
-			neuron_size,
-			&tiled_hidden_idx,
-			&tiled_input_idx,
+			&mut start_line,
+			&mut dir_line,
+		
+			&mut tiled_input_idx,
+			&mut tiled_hidden_idx,
 		);
+	}
+	drop(glia_pos);
 
-		let mut gidx1_cpu = vec!(u64::default();gidx1.elements());
-		gidx1.host(&mut gidx1_cpu);
-		drop(gidx1);
-
-		let mut tiled_hidden_idx_cpu = vec!(i32::default();tiled_hidden_idx.elements());
-		tiled_hidden_idx.host(&mut tiled_hidden_idx_cpu);
-		drop(tiled_hidden_idx);
-
-		let mut tiled_input_idx_cpu = vec!(i32::default();tiled_input_idx.elements());
-		tiled_input_idx.host(&mut tiled_input_idx_cpu);
-		drop(tiled_input_idx);
-
-		//println!("join_WColIdx.len() {}", join_WColIdx.len());
-		//println!("join_WColIdx.keys().len() {}", join_WColIdx.keys().len());
-		//println!("gidx1_cpu.len() {}", gidx1_cpu.len());
+	
 
 
-		//Save new neural connections to COO matrix hashmap
-		for qq in 0..gidx1_cpu.len()
-		{
-			join_all.push( (gidx1_cpu[qq].clone(),tiled_input_idx_cpu[qq].clone(),tiled_hidden_idx_cpu[qq].clone()) );
-			
-		}
 
+	
+
+
+	//Compute global index
+	gidx1 = get_global_weight_idx(
+		neuron_size,
+		&tiled_hidden_idx,
+		&tiled_input_idx,
+	);
+
+	let mut gidx1_cpu = vec!(u64::default();gidx1.elements());
+	gidx1.host(&mut gidx1_cpu);
+	drop(gidx1);
+
+	let mut tiled_hidden_idx_cpu = vec!(i32::default();tiled_hidden_idx.elements());
+	tiled_hidden_idx.host(&mut tiled_hidden_idx_cpu);
+	drop(tiled_hidden_idx);
+
+	let mut tiled_input_idx_cpu = vec!(i32::default();tiled_input_idx.elements());
+	tiled_input_idx.host(&mut tiled_input_idx_cpu);
+	drop(tiled_input_idx);
+
+	//println!("join_WColIdx.len() {}", join_WColIdx.len());
+	//println!("join_WColIdx.keys().len() {}", join_WColIdx.keys().len());
+	//println!("gidx1_cpu.len() {}", gidx1_cpu.len());
+
+
+	//Save new neural connections to COO matrix hashmap
+	for qq in 0..gidx1_cpu.len()
+	{
+		join_all.push( (gidx1_cpu[qq].clone(),tiled_input_idx_cpu[qq].clone(),tiled_hidden_idx_cpu[qq].clone()) );
 		
+	}
+
+	
 
 
-		join_all.par_sort_unstable_by_key(|pair| pair.0);
-		join_all.dedup_by_key(|pair| pair.0);
+	join_all.par_sort_unstable_by_key(|pair| pair.0);
+	join_all.dedup_by_key(|pair| pair.0);
 
 
 
