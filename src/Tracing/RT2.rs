@@ -455,32 +455,10 @@ pub fn RT2_directly_connected<Z: arrayfire::RealFloating<AggregateOutType = Z>  
 
 		
 
-		//println!("join_WColIdx.len() {}", join_WColIdx.len());
-		if ((join_all.len() as u64) > (input_connection_num))
-		{
-			join_all.par_sort_unstable_by_key(|pair| pair.0);
-			join_all.dedup_by_key(|pair| pair.0);
 
-			if ((join_all.len() as u64) > (input_connection_num))
-			{
-				break;
-			}
-		}
+		join_all.par_sort_unstable_by_key(|pair| pair.0);
+		join_all.dedup_by_key(|pair| pair.0);
 
-		if ((join_all.len() as u64) > prev_con_num)
-		{
-			prev_con_num = join_all.len() as u64;
-			same_counter = 0;
-		}
-		else
-		{
-			same_counter = same_counter + 1;
-		}
-
-		if same_counter > 5
-		{
-			break;
-		}
 
 
 	}
