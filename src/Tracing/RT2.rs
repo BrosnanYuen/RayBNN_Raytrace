@@ -38,7 +38,7 @@ const RAYTRACE_LIMIT: u64 = 100000000;
 
 
 /*
-Raytracing algorithm 3 for creating neural connections. Connects all neurons within minibatches/groups of neurons
+Raytracing algorithm 2 for creating neural connections. Connects all neurons
 
 Inputs
 raytrace_options:    Raytracing options
