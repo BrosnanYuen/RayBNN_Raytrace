@@ -52,7 +52,7 @@ WColIdx:        Column vector in the COO sparse matrix
 
 */
 
-pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
+pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutType = Z>   >(
     modeldata_float: &HashMap<String, f64>,
     modeldata_int: &HashMap<String, u64>,
 
@@ -89,7 +89,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
 
 
     let con_num: u64 = modeldata_int["ray_input_connection_num"].clone();
-    let ray_num: u64 = modeldata_int["ray_limit"].clone();
+    let ray_num: u64 = modeldata_int["ray_num_limit"].clone();
 
 
 
