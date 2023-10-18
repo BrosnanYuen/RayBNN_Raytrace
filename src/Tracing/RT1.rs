@@ -40,7 +40,7 @@ const RAYTRACE_LIMIT: u64 = 100000000;
 Raytracing algorithm 1 for creating neural connections. Randomly generates rays of random directions with variable number of random rays
 
 Inputs
-ray_num:        Number of rays per neuron per iteration
+ray_gen_num_limit:        Number of rays per neuron per iteration
 ray_input_connection_num:        Target number of total connections
 netdata:        Network metadata
 neuron_pos:     Neuron positions
@@ -89,7 +89,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 
 
     let ray_input_connection_num: u64 = modeldata_int["ray_input_connection_num"].clone();
-    let ray_num: u64 = modeldata_int["ray_num_limit"].clone();
+    let ray_gen_num_limit: u64 = modeldata_int["ray_gen_num_limit"].clone();
 
 
 
@@ -163,7 +163,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 
     generate_random_uniform_rays(
             &cur_neuron_pos,
-            ray_num,
+            ray_gen_num_limit,
             con_rad,
         
             &mut start_line,
@@ -311,7 +311,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 
 		generate_random_uniform_rays(
 				&cur_neuron_pos,
-				ray_num,
+				ray_gen_num_limit,
 				con_rad,
 			
 				&mut start_line,
