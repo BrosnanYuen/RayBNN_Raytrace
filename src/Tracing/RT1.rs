@@ -98,6 +98,10 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
 	let single_dims = arrayfire::Dim4::new(&[1,1,1,1]);
 
 
+	let ZERO = arrayfire::constant::<f64>(ZERO_F64,single_dims).cast::<Z>();
+
+	let neuron_rad_Z = arrayfire::constant::<f64>(neuron_rad,single_dims).cast::<Z>();
+
 
 
 
