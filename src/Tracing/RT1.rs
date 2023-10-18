@@ -67,22 +67,22 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 )
 {
     let neuron_size: u64 = modeldata_int["neuron_size"].clone();
-    let input_size: u64 = modeldata_int["input_size"].clone();
+    //let input_size: u64 = modeldata_int["input_size"].clone();
     let output_size: u64 = modeldata_int["output_size"].clone();
-    let proc_num: u64 = modeldata_int["proc_num"].clone();
-    let active_size: u64 = modeldata_int["active_size"].clone();
+    //let proc_num: u64 = modeldata_int["proc_num"].clone();
+    //let active_size: u64 = modeldata_int["active_size"].clone();
     let space_dims: u64 = modeldata_int["space_dims"].clone();
-    let step_num: u64 = modeldata_int["step_num"].clone();
+    //let step_num: u64 = modeldata_int["step_num"].clone();
 
 
 
-    let time_step: f64 = modeldata_float["time_step"].clone();
-    let nratio: f64 = modeldata_float["nratio"].clone();
-    let neuron_std: f64 = modeldata_float["neuron_std"].clone();
-    let sphere_rad: f64 = modeldata_float["sphere_rad"].clone();
+    //let time_step: f64 = modeldata_float["time_step"].clone();
+    //let nratio: f64 = modeldata_float["nratio"].clone();
+    //let neuron_std: f64 = modeldata_float["neuron_std"].clone();
+    //let sphere_rad: f64 = modeldata_float["sphere_rad"].clone();
     let neuron_rad: f64 = modeldata_float["neuron_rad"].clone();
 	let con_rad: f64 = modeldata_float["con_rad"].clone();
-	let init_prob: f64 = modeldata_float["init_prob"].clone();
+	//let init_prob: f64 = modeldata_float["init_prob"].clone();
 
 
 

@@ -30,11 +30,11 @@ fn test_RT1() {
     let TWO = arrayfire::constant::<f64>(TWO_F64,single_dims).cast::<f32>();
 
 
-	let neuron_size: u64 = 5100;
+	let neuron_size: u64 = 51000;
 	let input_size: u64 = 4;
 	let output_size: u64 = 3;
 	let proc_num: u64 = 3;
-	let active_size: u64 = 5000;
+	let active_size: u64 = 500000;
 	let space_dims: u64 = 3;
 	let mut batch_size: u64 = 105;
 
@@ -45,7 +45,7 @@ fn test_RT1() {
     let sphere_rad =  4.0;
 
 
-    let ray_input_connection_num = 100000;
+    let ray_input_connection_num = 1000000;
 
     let mut modeldata_float: HashMap<String, f64> = HashMap::new();
     let mut modeldata_int: HashMap<String, u64>  = HashMap::new();
@@ -61,6 +61,7 @@ fn test_RT1() {
     modeldata_int.insert("ray_max_rounds".to_string(), 1000);
     modeldata_int.insert("ray_glia_intersect".to_string(), 1);
     modeldata_int.insert("ray_neuron_intersect".to_string(), 1);
+    modeldata_int.insert("ray_gen_num_limit".to_string(), 10000);
 
 
 
