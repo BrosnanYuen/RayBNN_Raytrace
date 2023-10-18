@@ -156,8 +156,8 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 
 
 
-	let mut start_line = arrayfire::constant::<f64>(0.0,single_dims);
-    let mut dir_line = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut start_line = ZERO.clone();
+    let mut dir_line = ZERO.clone();
 
 
 
@@ -277,11 +277,11 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 
 
 
-	let mut start_lines1 = arrayfire::constant::<f64>(0.0,single_dims);
-	let mut end_lines1 = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut start_lines1 = ZERO.clone();
+	let mut end_lines1 = ZERO.clone();
 
-	let mut start_lines2 = arrayfire::constant::<f64>(0.0,single_dims);
-	let mut end_lines2 = arrayfire::constant::<f64>(0.0,single_dims);
+	let mut start_lines2 = ZERO.clone();
+	let mut end_lines2 = ZERO.clone();
 
 
 	loop
@@ -305,8 +305,8 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 	
 	
 	
-		start_line = arrayfire::constant::<f64>(0.0,single_dims);
-		dir_line = arrayfire::constant::<f64>(0.0,single_dims);
+		start_line = ZERO.clone();
+		dir_line = ZERO.clone();
 	
 
 		generate_random_uniform_rays(
