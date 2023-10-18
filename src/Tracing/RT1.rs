@@ -56,11 +56,11 @@ WColIdx:        Column vector in the COO sparse matrix
 
 */
 
-pub fn RT1_random_rays(
-	ray_num: u64,
-	con_num: u64,
+pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
+    modeldata_float: &HashMap<String, f64>,
+    modeldata_int: &HashMap<String, u64>,
 
-	netdata: &network_metadata_type,
+
 	neuron_pos: &arrayfire::Array<f64>,
 	neuron_idx: &arrayfire::Array<i32>,
 
