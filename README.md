@@ -81,5 +81,25 @@ RayBNN_Raytrace::Intersect::Sphere::line_sphere_intersect_batchV2(
 ```
 
 
+# Raytrace Neural Connections using RT3
+```
+RayBNN_Raytrace::Tracing::RT3::RT3_distance_limited_directly_connected(
+    &modeldata_float,
+    &modeldata_int,
+
+    &glia_pos,
+
+    &input_pos_total,
+    &input_idx_total,
+
+    &hidden_pos_total,
+    &hidden_idx_total,
+
+    
+    &mut WRowIdxCOO,
+    &mut WColIdx
+);
+```
+
 
 
