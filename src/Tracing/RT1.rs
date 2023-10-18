@@ -52,7 +52,7 @@ WColIdx:        Column vector in the COO sparse matrix
 
 */
 
-pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutType = Z>   >(
+pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutType = Z,AggregateOutType = Z>   >(
     modeldata_float: &HashMap<String, f64>,
     modeldata_int: &HashMap<String, u64>,
 
