@@ -164,13 +164,13 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 
 
     generate_random_uniform_rays(
-            &cur_neuron_pos,
-            ray_gen_num_limit,
-            con_rad,
-        
-            &mut start_line,
-            &mut dir_line
-        );
+        &cur_neuron_pos,
+        ray_gen_num_limit,
+        con_rad,
+    
+        &mut start_line,
+        &mut dir_line
+    );
 
 
 	let randarr_dims = arrayfire::Dim4::new(&[dir_line.dims()[0],1,1,1]);
@@ -214,7 +214,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 		&circle_radius,
 	
 		&mut intersect
-		);
+	);
 
 
 	intersect = arrayfire::reorder_v2(&intersect, 2, 1, Some(vec![0]));
@@ -312,13 +312,13 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 	
 
 		generate_random_uniform_rays(
-				&cur_neuron_pos,
-				ray_gen_num_limit,
-				con_rad,
-			
-				&mut start_line,
-				&mut dir_line
-			);
+            &cur_neuron_pos,
+            ray_gen_num_limit,
+            con_rad,
+        
+            &mut start_line,
+            &mut dir_line
+        );
 
 			
 		let randarr_dims = arrayfire::Dim4::new(&[dir_line.dims()[0],1,1,1]);
@@ -361,7 +361,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 			&circle_radius,
 		
 			&mut intersect
-			);
+		);
 	
 	
 		intersect = arrayfire::reorder_v2(&intersect, 2, 1, Some(vec![0]));
