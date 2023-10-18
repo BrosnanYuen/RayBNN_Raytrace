@@ -135,7 +135,9 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 	let active_size = neuron_idx.dims()[0];
 	let active_size_u32 = active_size as u32;
 
-	let circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[active_size,1,1,1]));
+	//let circle_radius = arrayfire::constant::<f64>(neuron_rad,arrayfire::Dim4::new(&[active_size,1,1,1]));
+
+    let mut circle_radius = arrayfire::tile(&neuron_rad_Z, arrayfire::Dim4::new(&[active_size,1,1,1]));
 
 
     let mut curidxsel = arrayfire::rows(neuron_idx, (active_size-output_size) as i64, (active_size-1)   as i64);
