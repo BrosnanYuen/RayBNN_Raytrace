@@ -110,7 +110,10 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
 
     let colseq = arrayfire::Seq::new(0.0, (space_dims-1) as f64, 1.0);
 
-    let mut temparr = arrayfire::constant::<f64>(0.0,arrayfire::Dim4::new(&[neuron_size,space_dims,1,1]));
+    //let mut temparr = arrayfire::constant::<f64>(0.0,arrayfire::Dim4::new(&[neuron_size,space_dims,1,1]));
+
+	let mut temparr = arrayfire::tile(&ZERO, arrayfire::Dim4::new(&[neuron_size,space_dims,1,1]));
+
 
     let idx = neuron_idx.clone();
 
