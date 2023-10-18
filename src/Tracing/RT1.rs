@@ -61,7 +61,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
     modeldata_int: &HashMap<String, u64>,
 
 
-	neuron_pos: &arrayfire::Array<f64>,
+	neuron_pos: &arrayfire::Array<Z>,
 	neuron_idx: &arrayfire::Array<i32>,
 
 
