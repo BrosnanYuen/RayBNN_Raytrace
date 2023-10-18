@@ -42,7 +42,7 @@ fn test_RT1() {
     let time_step = 0.3;
     let nratio =  0.5;
     let neuron_std =  0.3;
-    let sphere_rad =  4.0;
+    let sphere_rad =  30.0;
 
 
     let ray_input_connection_num = 1000000;
