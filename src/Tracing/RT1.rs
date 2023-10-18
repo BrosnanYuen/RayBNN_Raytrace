@@ -88,7 +88,8 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
 
 
 
-
+    let con_num: u64 = modeldata_int["ray_input_connection_num"].clone();
+    let ray_num: u64 = modeldata_int["ray_limit"].clone();
 
 
 
