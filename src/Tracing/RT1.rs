@@ -90,16 +90,6 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating  >(
 
 
 
-	let time_step: f64 = netdata.time_step.clone();
-	let nratio: f64 = netdata.nratio.clone();
-	let neuron_std: f64 = netdata.neuron_std.clone();
-	let sphere_rad: f64 = netdata.sphere_rad.clone();
-	let neuron_rad: f64 = netdata.neuron_rad.clone();
-	let con_rad: f64 = netdata.con_rad.clone();
-	let init_prob: f64 = netdata.init_prob.clone();
-
-
-
 
 
 
