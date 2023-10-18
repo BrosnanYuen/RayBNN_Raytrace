@@ -121,17 +121,14 @@ fn test_RT1() {
     let input_pos_total = neuron_pos.clone();
     let hidden_pos_total = neuron_pos.clone();
 
-    RayBNN_Raytrace::Tracing::RT2::RT1_directly_connected(
+    RayBNN_Raytrace::Tracing::RT1::RT1_random_rays(
         &modeldata_float,
         &modeldata_int,
     
-        &glia_pos,
     
         &input_pos_total,
         &input_idx_total,
     
-        &hidden_pos_total,
-        &hidden_idx_total,
     
         
         &mut WRowIdxCOO,
