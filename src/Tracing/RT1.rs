@@ -14,7 +14,7 @@ use rand::distributions::{Distribution, Uniform};
 
 use RayBNN_Sparse::Util::Convert::get_global_weight_idx;
 
-
+use RayBNN_Sparse::Util::Search::find_unique;
 
 use crate::Generate::Random::generate_random_uniform_rays;
 
