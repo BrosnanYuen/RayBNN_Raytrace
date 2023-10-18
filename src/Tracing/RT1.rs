@@ -16,13 +16,9 @@ use RayBNN_Sparse::Util::Convert::get_global_weight_idx;
 
 
 
-use crate::Generate::Fixed::tileDown;
+use crate::Generate::Random::generate_random_uniform_rays;
 
-use crate::Intersect::Sphere::line_sphere_intersect_batchV2;
-
-use crate::Generate::Fixed::rays_from_neuronsA_to_neuronsB;
-
-
+use crate::Intersect::Sphere::line_sphere_intersect_batch;
 
 
 
