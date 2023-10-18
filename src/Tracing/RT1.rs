@@ -41,7 +41,7 @@ Raytracing algorithm 1 for creating neural connections. Randomly generates rays 
 
 Inputs
 ray_num:        Number of rays per neuron per iteration
-con_num:        Target number of total connections
+ray_input_connection_num:        Target number of total connections
 netdata:        Network metadata
 neuron_pos:     Neuron positions
 neuron_idx:     Indexes of neuron positions
@@ -88,7 +88,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 
 
 
-    let con_num: u64 = modeldata_int["ray_input_connection_num"].clone();
+    let ray_input_connection_num: u64 = modeldata_int["ray_input_connection_num"].clone();
     let ray_num: u64 = modeldata_int["ray_num_limit"].clone();
 
 
@@ -423,7 +423,7 @@ pub fn RT1_random_rays<Z: arrayfire::RealFloating<ProductOutType = Z, UnaryOutTy
 	
 
 
-		if WRowIdxCOO.dims()[0] > con_num
+		if WRowIdxCOO.dims()[0] > ray_input_connection_num
 		{
 			break;
 		}
