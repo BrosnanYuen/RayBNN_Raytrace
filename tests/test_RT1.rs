@@ -45,7 +45,7 @@ fn test_RT1() {
     let sphere_rad =  30.0;
 
 
-    let ray_input_connection_num = 100000;
+    let ray_input_connection_num = 40000;
 
     let mut modeldata_float: HashMap<String, f64> = HashMap::new();
     let mut modeldata_int: HashMap<String, u64>  = HashMap::new();
