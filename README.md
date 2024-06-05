@@ -19,14 +19,14 @@ or build from source
 # Add to Cargo.toml
 ```
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
-rayon = "1.7.0"
-num = "0.4.1"
-num-traits = "0.2.16"
-half = { version = "2.3.1" , features = ["num-traits"] }
-RayBNN_DataLoader = "0.1.3"
-RayBNN_Sparse = "0.1.2"
-RayBNN_Cell = "0.1.2"
-RayBNN_Raytrace = "0.1.6"
+rayon = "1.10.0"
+num = "0.4.3"
+num-traits = "0.2.19"
+half = { version = "2.4.1" , features = ["num-traits"] }
+RayBNN_DataLoader = "2.0.2"
+RayBNN_Sparse = "2.0.1"
+RayBNN_Cell = "2.0.1"
+RayBNN_Raytrace = "2.0.1"
 ```
 
 
