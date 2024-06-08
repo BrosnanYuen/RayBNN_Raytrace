@@ -82,7 +82,7 @@ fn test_RT1() {
 	let mut neuron_pos = arrayfire::constant::<f32>(0.0,temp_dims);
 
 
-    let mut cell_pos: arrayfire::Array<f32>  = RayBNN_Cell::Hidden::Sphere::generate_uniform_sphere_posiiton(&modeldata_float, &modeldata_int);
+    let mut cell_pos: arrayfire::Array<f32>  = RayBNN_Cell::Hidden::Sphere::generate_uniform_sphere_position(&modeldata_float, &modeldata_int);
 
 
     println!("cell_pos {}", cell_pos.dims()[0]);
