@@ -1,6 +1,6 @@
 [package]
 name = "RayBNN_Raytrace"
-version = "2.0.2"
+version = "2.0.3"
 authors = ["Brosnan Yuen <brosnanyuen@gmail.com>"]
 edition = "2021"
 description = "Ray tracing library using GPUs, CPUs, and FPGAs via CUDA, OpenCL, and oneAPI"
@@ -21,9 +21,9 @@ num-traits = "0.2.19"
 half = { version = "2.4.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-RayBNN_DataLoader = "2.0.2"
-RayBNN_Sparse = "2.0.1"
-RayBNN_Cell = "2.0.2"
+RayBNN_DataLoader = "2.0.3"
+RayBNN_Sparse = "2.0.2"
+RayBNN_Cell = "2.0.3"
 
 [dev-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -33,9 +33,9 @@ num-traits = "0.2.19"
 half = { version = "2.4.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-RayBNN_DataLoader = "2.0.2"
-RayBNN_Sparse = "2.0.1"
-RayBNN_Cell = "2.0.2"
+RayBNN_DataLoader = "2.0.3"
+RayBNN_Sparse = "2.0.2"
+RayBNN_Cell = "2.0.3"
 
 [build-dependencies]
 arrayfire = { version = "3.8.1", package = "arrayfire_fork" }
@@ -45,9 +45,9 @@ num-traits = "0.2.19"
 half = { version = "2.4.1" , features = ["num-traits"] }
 rand = "0.8.5"
 nohash-hasher = "0.2.0"
-RayBNN_DataLoader = "2.0.2"
-RayBNN_Sparse = "2.0.1"
-RayBNN_Cell = "2.0.2"
+RayBNN_DataLoader = "2.0.3"
+RayBNN_Sparse = "2.0.2"
+RayBNN_Cell = "2.0.3"
 
 [lib]
 name = "RayBNN_Raytrace"
